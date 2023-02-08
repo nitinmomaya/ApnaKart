@@ -31,7 +31,7 @@ const Login = ({ setIsLogin, isLogin }) => {
               </button>
             </div>
             <p className="font-display py-2">
-              Signup to get assured product delivered on time
+              Login to get assured product delivered on time
             </p>
           </div>
 
@@ -41,6 +41,7 @@ const Login = ({ setIsLogin, isLogin }) => {
               label={"Password"}
               placeholder={"Enter Password"}
               type={"password"}
+              icon={true}
             />
             <button className="w-full bg-slate-700 text-gray-50 font-display font-semibold px-6 py-3 rounded">
               Login
