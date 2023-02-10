@@ -31,7 +31,7 @@ const Input = ({
         className="my-2 bg-gray-50 border font-display border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder={placeholder}
       />
-      <div className="space-y-2">
+      <div className="mb-4">
         {icon && (
           <button
             className="text-slate-900 font-display font-semibold"

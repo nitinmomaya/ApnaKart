@@ -35,23 +35,23 @@ const Navbar = () => {
           ApnaMart
         </h1>
         <ul className="sm:flex sm:items-center sm:space-x-12 hidden">
-          <Link to="/"><li className="font-display font-semibold hover:text-slate-700">
+          <Link to="/"><li className="font-display text-gray-500 font-semibold hover:text-slate-700">
             Home
           </li></Link>
-          <Link to='/about'><li className="font-display font-semibold hover:text-slate-700">
+          <Link to='/about'><li className="font-display text-gray-500 font-semibold hover:text-slate-700">
             About
           </li></Link>
-          <Link to='/contact'><li className="font-display font-semibold hover:text-slate-700">
+          <Link to='/contact'><li className="font-display text-gray-500 font-semibold hover:text-slate-700">
             Contact
           </li></Link>
 
           <li>
             {user ? (
-              <button onClick={handleLogout} className="border-slate-700 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-700 hover:bg-slate-600 hover:text-white">
+              <button onClick={handleLogout} className="border-neutral-200 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-gray-500 hover:bg-slate-600 hover:text-white">
                 Logout
               </button>
             ) : (
-              <button onClick={handleLogout} className="border-slate-700 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-700 hover:bg-slate-600 hover:text-white">
+              <button onClick={handleLogout} className="border-slate-700 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-gray-500 hover:bg-slate-600 hover:text-white">
                 Login
               </button>
             )}
@@ -73,14 +73,14 @@ const Navbar = () => {
       <div className={isActive ? "flex" : "hidden"}>
         <ul className=" sm:hidden space-x-8 space-y-4">
           <li></li>
-          <Link to='/'><li className="font-display font-semibold hover:text-slate-700">
+          <Link to='/'><li className=" font-display text-gray-500 font-semibold hover:text-slate-700">
             Home
           </li></Link>
           
-          <li className="font-display font-semibold hover:text-slate-700">
+          <li className="font-display  text-gray-500 font-semibold hover:text-slate-700">
             About
           </li>
-          <li className="font-display font-semibold hover:text-slate-700">
+          <li className="font-display text-gray-500 font-semibold hover:text-slate-700">
             Contact
           </li>
 

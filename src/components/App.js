@@ -9,13 +9,26 @@ import Contact from "./Contact";
 import Navbar from "./Navbar";
 import ProtectedRoute from "./ProtectedRoute";
 
-const Home = () => {
+import Footer from "./Footer";
+import Home from "./Home";
+
+
+const App = () => {
+
+ 
+
   
   return (
-    <>
-      <Navbar />
-      <h1>This is HomePage</h1>
+    <><div className="w-full h-full flex flex-col min-h-screen">
+<Navbar />
+
+    
+      
       <Outlet />
+     
+      <Footer/>
+    </div>
+      
     </>
   );
 };
@@ -23,11 +36,15 @@ const Home = () => {
 export const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <ProtectedRoute><Home /></ProtectedRoute>,
+    element: <ProtectedRoute><App /></ProtectedRoute>,
     children: [
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "/",
+        element: <Home />,
       },
       {
         path: "contact",
@@ -44,4 +61,4 @@ export const appRouter = createBrowserRouter([
     element: <Signup />,
   },
 ]);
-export default Home;
+export default App;

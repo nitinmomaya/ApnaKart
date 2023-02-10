@@ -4,13 +4,21 @@ import { Link, useNavigate } from "react-router-dom";
 import img from "../assest/Signup-Image.png";
 import { useUserAuth } from "../context/UserAuth";
 import GoogleSignIn from "../UI/GoogleSignin";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object({
+  
+  email: Yup.string().email().required("Please enter your email"),
+  password: Yup.string().min(4).required("Please Enter your Password"),
+ 
+});
 
 import Input from "../UI/Input";
 const Login = () => {
   const [error,setError]=useState("");
 
   const {login} =useUserAuth();
-  const naviagte =useNavigate();
+  const navigate =useNavigate();
 
   const initialValues = {
    
@@ -21,12 +29,13 @@ const Login = () => {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
+      validationSchema,
 
       onSubmit: async(values, action) => {
         console.log("values:", values);
         setError("");
         try { await login(values.email,values.password);
-        naviagte("/");
+        navigate("/");
       }
         catch(err){
 

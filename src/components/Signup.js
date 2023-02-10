@@ -16,11 +16,10 @@ const validationSchema = Yup.object({
     .oneOf([Yup.ref("password"), null], "Password must Match"),
 });
 const Signup = ({ setIsLogin, isLogin }) => {
+  const [error, setError] = useState("");
 
-  const [error,setError]=useState("");
-
-  const {signup} =useUserAuth();
-  const naviagte =useNavigate();
+  const { signup } = useUserAuth();
+  const navigate = useNavigate();
 
   const initialValues = {
     name: "",
@@ -29,23 +28,30 @@ const Signup = ({ setIsLogin, isLogin }) => {
     confirm_password: "",
   };
 
+
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
       validationSchema,
-      onSubmit: async(values, action) => {
-        console.log("values:", values);
-        setError("");
-        try { await signup(values.email,values.password);
-        naviagte("/login");}
-        catch(err){
-
-          setError(err.message);
-
-        }
+      onSubmit:  (values, action) => {
+        handleSignup(values.email,values.password);
+        
         action.resetForm();
       },
     });
+
+    
+  const handleSignup = async (email,password) => {
+   
+    setError("");
+    try {
+      await signup(email, password);
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   return (
     <>
@@ -67,21 +73,22 @@ const Signup = ({ setIsLogin, isLogin }) => {
               <h1 className="text-3xl font-display font-semibold">
                 Signup Page
               </h1>
-              <Link to="/login"><button
-              
-              className="border-slate-600 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600"
-            >
-              Login
-            </button></Link>
+              <Link to="/login">
+                <button className="border-slate-600 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600">
+                  Login
+                </button>
+              </Link>
             </div>
             <p className="font-display py-2">
               Signup to get assured product delivered on time
             </p>
-            {error && <p className="text-red-500 font-display font-semibold">{error}</p>}
+            {error && (
+              <p className="text-red-500 font-display font-semibold">{error}</p>
+            )}
           </div>
-         
-            <div className="w-full space-y-4">
-            <GoogleSignIn title={"Signup With Google"}/>
+
+          <div className="w-full space-y-4">
+            <GoogleSignIn title={"Signup With Google"} />
             <form onSubmit={handleSubmit}>
               <Input
                 label={"Name"}
@@ -135,9 +142,8 @@ const Signup = ({ setIsLogin, isLogin }) => {
               >
                 Sign Up
               </button>
-              </form>
-            </div>
-          
+            </form>
+          </div>
         </div>
       </div>
     </>
