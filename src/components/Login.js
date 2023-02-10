@@ -1,6 +1,41 @@
+import { useFormik } from "formik";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../assest/Signup-Image.png";
+import { useUserAuth } from "../context/UserAuth";
+import GoogleSignIn from "../UI/GoogleSignin";
+
 import Input from "../UI/Input";
-const Login = ({ setIsLogin, isLogin }) => {
+const Login = () => {
+  const [error,setError]=useState("");
+
+  const {login} =useUserAuth();
+  const naviagte =useNavigate();
+
+  const initialValues = {
+   
+    email: "",
+    password: "",
+  };
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+
+      onSubmit: async(values, action) => {
+        console.log("values:", values);
+        setError("");
+        try { await login(values.email,values.password);
+        naviagte("/");
+      }
+        catch(err){
+
+          setError(err.message);
+
+        }
+        action.resetForm();
+      },
+    });
   return (
     <>
       <div className="  w-full  flex md:flex-row flex-col  md:justify-center h-screen space-y-4">
@@ -21,31 +56,49 @@ const Login = ({ setIsLogin, isLogin }) => {
               <h1 className="text-3xl font-display font-semibold">
                 Login Page
               </h1>
-              <button
-                onClick={() => {
-                  setIsLogin(!isLogin);
-                }}
-                className="border-slate-600 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600"
-              >
-                Signup
-              </button>
+              <Link to="/signup"><button
+              
+              className="border-slate-600 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600"
+            >
+              Signup
+            </button></Link>
             </div>
             <p className="font-display py-2">
               Login to get assured product delivered on time
             </p>
+            {error && <p className="text-red-500 font-display font-semibold">{error}</p>}
           </div>
 
           <div className="w-full space-y-4">
-            <Input label={"Email"} placeholder={"Enter Email"} type={"email"} />
+            <GoogleSignIn title={"Signin With Google"}/>
+            <form onSubmit={handleSubmit}>
             <Input
-              label={"Password"}
-              placeholder={"Enter Password"}
-              type={"password"}
-              icon={true}
-            />
-            <button className="w-full bg-slate-700 text-gray-50 font-display font-semibold px-6 py-3 rounded">
+                label={"Email"}
+                placeholder={"Enter Email"}
+                type={"email"}
+                name={"email"}
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors.email}
+                touched={touched.email}
+              />
+            <Input
+                label={"Password"}
+                placeholder={"Enter Password"}
+                type={"password"}
+                icon={true}
+                name={"password"}
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors.password}
+                touched={touched.password}
+              />
+            <button type="submit" className="w-full bg-slate-700 text-gray-50 font-display font-semibold px-6 py-3 rounded">
               Login
             </button>
+            </form>
           </div>
         </div>
       </div>

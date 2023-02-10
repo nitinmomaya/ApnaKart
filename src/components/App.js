@@ -7,12 +7,14 @@ import { createBrowserRouter, Outlet } from "react-router-dom";
 import About from "./About";
 import Contact from "./Contact";
 import Navbar from "./Navbar";
+import ProtectedRoute from "./ProtectedRoute";
 
 const Home = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  
   return (
     <>
       <Navbar />
+      <h1>This is HomePage</h1>
       <Outlet />
     </>
   );
@@ -21,7 +23,7 @@ const Home = () => {
 export const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <ProtectedRoute><Home /></ProtectedRoute>,
     children: [
       {
         path: "about",

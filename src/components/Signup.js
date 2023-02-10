@@ -2,6 +2,10 @@ import { useFormik } from "formik";
 import img from "../assest/Signup-Image.png";
 import Input from "../UI/Input";
 import * as Yup from "yup";
+import { useUserAuth } from "../context/UserAuth";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import GoogleSignIn from "../UI/GoogleSignin";
 
 const validationSchema = Yup.object({
   name: Yup.string().min(2).max(25).required("Please Enter Your Name"),
@@ -12,6 +16,12 @@ const validationSchema = Yup.object({
     .oneOf([Yup.ref("password"), null], "Password must Match"),
 });
 const Signup = ({ setIsLogin, isLogin }) => {
+
+  const [error,setError]=useState("");
+
+  const {signup} =useUserAuth();
+  const naviagte =useNavigate();
+
   const initialValues = {
     name: "",
     email: "",
@@ -23,8 +33,16 @@ const Signup = ({ setIsLogin, isLogin }) => {
     useFormik({
       initialValues,
       validationSchema,
-      onSubmit: (values, action) => {
+      onSubmit: async(values, action) => {
         console.log("values:", values);
+        setError("");
+        try { await signup(values.email,values.password);
+        naviagte("/login");}
+        catch(err){
+
+          setError(err.message);
+
+        }
         action.resetForm();
       },
     });
@@ -49,21 +67,22 @@ const Signup = ({ setIsLogin, isLogin }) => {
               <h1 className="text-3xl font-display font-semibold">
                 Signup Page
               </h1>
-              <button
-                onClick={() => {
-                  setIsLogin(!isLogin);
-                }}
-                className="border-slate-600 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600"
-              >
-                Login
-              </button>
+              <Link to="/login"><button
+              
+              className="border-slate-600 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600"
+            >
+              Login
+            </button></Link>
             </div>
             <p className="font-display py-2">
               Signup to get assured product delivered on time
             </p>
+            {error && <p className="text-red-500 font-display font-semibold">{error}</p>}
           </div>
-          <form onSubmit={handleSubmit}>
+         
             <div className="w-full space-y-4">
+            <GoogleSignIn title={"Signup With Google"}/>
+            <form onSubmit={handleSubmit}>
               <Input
                 label={"Name"}
                 placeholder={"Enter Name"}
@@ -116,8 +135,9 @@ const Signup = ({ setIsLogin, isLogin }) => {
               >
                 Sign Up
               </button>
+              </form>
             </div>
-          </form>
+          
         </div>
       </div>
     </>
