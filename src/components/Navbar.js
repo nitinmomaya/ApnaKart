@@ -47,11 +47,11 @@ const Navbar = () => {
 
           <li>
             {user ? (
-              <button onClick={handleLogout} className="border-neutral-200 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-gray-500 hover:bg-slate-600 hover:text-white">
+              <button onClick={handleLogout} className="border-slate-200 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-gray-500 hover:bg-slate-600 hover:text-white">
                 Logout
               </button>
             ) : (
-              <button onClick={handleLogout} className="border-slate-700 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-gray-500 hover:bg-slate-600 hover:text-white">
+              <button onClick={handleLogout} className="border-slate-200 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-gray-500 hover:bg-slate-600 hover:text-white">
                 Login
               </button>
             )}
@@ -86,11 +86,11 @@ const Navbar = () => {
 
           <li>
             {user ? (
-              <button className="border-slate-700 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-700 hover:bg-slate-600 hover:text-white">
+              <button className="border-slate-200 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-700 hover:bg-slate-600 hover:text-white">
                 Logout
               </button>
             ) : (
-              <button className="border-slate-700 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-700 hover:bg-slate-600 hover:text-white">
+              <button className="border-slate-200 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-700 hover:bg-slate-600 hover:text-white">
                 Login
               </button>
             )}

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer=()=>{
     return(
         <>
@@ -34,9 +36,12 @@ const Footer=()=>{
                 
                 <li className="font-display text-gray-500 text-md pb-2 font-semibold hover:text-slate-600 cursor-pointer">
                     Term of Use
-                </li><li className="font-display text-gray-500 text-md pb-2 font-semibold hover:text-slate-600 cursor-pointer">
+                </li>
+                
+                <li className="font-display text-gray-500 text-md pb-2 font-semibold hover:text-slate-600 cursor-pointer">
                    Privacy
-                </li><li className="font-display text-gray-500 text-md pb-2 font-semibold hover:text-slate-600 cursor-pointer">
+                </li>
+                <li className="font-display text-gray-500 text-md pb-2 font-semibold hover:text-slate-600 cursor-pointer">
                    SiteMap
                 </li>
             </ul>
@@ -45,21 +50,26 @@ const Footer=()=>{
             <ul>
                 <p className=" font-display text-gray-800 font-bold text-2xl pb-4 ">Social</p>
                 
+                <Link to='https://www.instagram.com/nitinmomaya/'>
                 <li className="font-display text-gray-500 text-md pb-2 font-semibold hover:text-slate-600 cursor-pointer">
                    Instagram
-                </li><li className="font-display text-gray-500 text-md pb-2 font-semibold hover:text-slate-600 cursor-pointer">
+                </li>
+                </Link>
+                
+                <li className="font-display text-gray-500 text-md pb-2 font-semibold hover:text-slate-600 cursor-pointer">
                    Twitter
-                </li><li className="font-display text-gray-500 text-md pb-2 font-semibold hover:text-slate-600 cursor-pointer">
+                </li>
+                <li className="font-display text-gray-500 text-md pb-2 font-semibold hover:text-slate-600 cursor-pointer">
                     Youtube
                 </li>
             </ul>
         </div>
        
     </div>
-    <div className="flex flex-col justify-center items-center text-center  p-5 bg-gray-50">
+    <div className="flex flex-col justify-center items-center text-center  p-5 bg-slate-50">
         <h1 className=" text-gray-800 font-semibold font-display">
-            © 2023 All rights reserved | Build with ❤ by
-            <span className="hover:text-slate-600 font-semibold cursor-pointer font-display">
+            © 2023 All rights reserved | Build with ❤ by 
+            <span className="hover:text-slate-600 font-semibold cursor-pointer font-display mx-1">
                 Nitin Momaya
             </span>
         </h1>

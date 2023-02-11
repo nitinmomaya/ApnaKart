@@ -8,10 +8,9 @@ const Home =()=>{
         <h1 className="font-display font-bold text-3xl text-slate-900 px-8">{`Welcome ${user.displayName} to ApnaMart`}</h1>
         <p className="font-display text-lg text-slate-700 mx-8">Explore products from different Categories and filter products at your wish</p>
     </div>
-<HomeProduct title={"Product title"}/>
-<HomeProduct title={"Product title"}/>
-<HomeProduct title={"Product title"}/>
-
+<HomeProduct title={"Latest Mobile"} companyName={"Apple"} productName={"iPhone 12"} price={"23,900"}/>
+<HomeProduct title={"Trending Now"} companyName={"Apple"} productName={"iPhone 12"} price={"23,900"}/>
+<HomeProduct title={"Recommended For You"} companyName={"Apple"} productName={"iPhone 12"} price={"23,900"}/>
     </>)
 }
 

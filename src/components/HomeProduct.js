@@ -1,24 +1,23 @@
+import { Link } from "react-router-dom";
+import img from "../assest/Apple-Mobile.jpg"
+import ProductCard from "./ProductCard";
 const HomeProduct=({title})=>{
 
     return(<>
-    <div className="py-16 bg-neutral-50">
-    <h1 className="font-display font-bold text-lg text-slate-900 px-8">{title}</h1>
+    <div className="py-16 bg-white">
+    <h1 className="font-display font-bold text-2xl text-slate-900 px-8">{title}</h1>
 
-<div className="flex justify-between py-8 px-8">
-    <div>
-        Product-Card-1
-    </div>
-    <div>
-        Product-Card-2
-    </div>
-    <div>
-        Product-Card-3
-    </div>
-    <div className="border-2">
-        Product-Card-4
-    </div>
+<div className="flex justify-between py-4 px-8">
+   
+   <ProductCard productName={"iphone"} companyName={"Apple"} price={"23,900"} img={img}/>
+   <ProductCard productName={"iphone"} companyName={"Apple"} price={"23,900"} img={img}/>
+   <ProductCard productName={"iphone"} companyName={"Apple"} price={"23,900"} img={img}/>
+   <ProductCard productName={"iphone"} companyName={"Apple"} price={"23,900"} img={img}/>
+   <ProductCard productName={"iphone"} companyName={"Apple"} price={"23,900"} img={img}/>
+  
 </div>
     </div>
+    
     </>)
 }
 
