@@ -33,9 +33,13 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    getProducts(API_URL);
-  }, []);
+  useEffect(
+    () => {
+      getProducts(API_URL);
+    },
+    [],
+    100000
+  );
 
   return (
     <ProductContext.Provider value={{ ...state }}>

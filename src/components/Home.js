@@ -15,7 +15,7 @@ const Home = () => {
       <div className="pt-28 pb-8 space-y-2">
         <h1 className="font-display font-bold text-3xl text-slate-900 px-8">{`Welcome ${name} to ApnaMart`}</h1>
         <p className="font-display text-lg text-slate-700 mx-8">
-          Explore products from different Categories and filter products at your
+          Explore products from different categories and filter products at your
           wish
         </p>
       </div>
