@@ -28,22 +28,18 @@ const Signup = ({ setIsLogin, isLogin }) => {
     confirm_password: "",
   };
 
-
-
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
       validationSchema,
-      onSubmit:  (values, action) => {
-        handleSignup(values.email,values.password);
-        
+      onSubmit: (values, action) => {
+        handleSignup(values.email, values.password);
+
         action.resetForm();
       },
     });
 
-    
-  const handleSignup = async (email,password) => {
-   
+  const handleSignup = async (email, password) => {
     setError("");
     try {
       await signup(email, password);

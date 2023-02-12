@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
 
@@ -12,23 +11,16 @@ import ProtectedRoute from "./ProtectedRoute";
 import Footer from "./Footer";
 import Home from "./Home";
 
-
 const App = () => {
-
- 
-
-  
   return (
-    <><div className="w-full h-full flex flex-col min-h-screen">
-<Navbar />
+    <>
+      <div className="w-full h-full flex flex-col min-h-screen">
+        <Navbar />
 
-    
-      
-      <Outlet />
-     
-      <Footer/>
-    </div>
-      
+        <Outlet />
+
+        <Footer />
+      </div>
     </>
   );
 };
@@ -36,7 +28,11 @@ const App = () => {
 export const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <ProtectedRoute><App /></ProtectedRoute>,
+    element: (
+      <ProtectedRoute>
+        <App />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "about",
