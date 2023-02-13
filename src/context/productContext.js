@@ -2,7 +2,7 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { API_URL } from "../../contant";
-import HomeProduct from "../components/HomeProduct";
+
 import reducer from "../reducers/productReducer";
 
 //create context using createContext
@@ -14,6 +14,7 @@ export const ProductProvider = ({ children }) => {
   const initialState = {
     isLoading: false,
     isError: false,
+    product: {},
     products: [],
   };
 
@@ -33,16 +34,25 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  useEffect(
-    () => {
-      getProducts(API_URL);
-    },
-    [],
-    100000
-  );
+  // API call for single product
+
+  const getProduct = async (url) => {
+    dispatch({ type: "SET_PRODUCT_LOADING" });
+    try {
+      const res = await axios.get(url);
+      const product = await res.data;
+      dispatch({ type: "SET_PRODUCT", payload: product });
+    } catch (error) {
+      dispatch({ type: "SET_PRODUCT_ERROR" });
+    }
+  };
+
+  useEffect(() => {
+    getProducts(API_URL);
+  }, []);
 
   return (
-    <ProductContext.Provider value={{ ...state }}>
+    <ProductContext.Provider value={{ ...state, getProduct }}>
       {children}
     </ProductContext.Provider>
   );

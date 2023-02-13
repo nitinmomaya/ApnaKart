@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <>
       <div className="flex flex-col  w-full fixed  justify-end z-10">
-        <div className="flex justify-between  px-8 py-4   font-display font items-center border-b-slate-200 border-b bg-white w-full ">
+        <div className="flex justify-between  px-24 py-4   font-display font items-center border-b-slate-200 border-b bg-white w-full ">
           <Link to="/">
             <h1 className="font-display font-semibold text-2xl text-slate-700">
               ApnaMart
@@ -88,13 +88,13 @@ const Navbar = () => {
         <div
           className={
             isActive
-              ? "flex py-4  border-b-slate-200 border-b-[1px] bg-white"
+              ? "flex py-4 px-24 border-b-slate-200 border-b-[1px] bg-white"
               : "hidden"
           }
         >
-          <ul className=" sm:hidden space-x-8 space-y-4">
+          <ul className=" sm:hidden flex flex-col space-y-6">
             <Link to="/">
-              <li className=" px-8 font-display text-gray-500 font-semibold hover:text-slate-700 ">
+              <li className="  font-display text-gray-500 font-semibold hover:text-slate-700 ">
                 Home
               </li>
             </Link>

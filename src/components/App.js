@@ -10,6 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import Footer from "./Footer";
 import Home from "./Home";
+import Product from "./Product";
 
 const App = () => {
   return (
@@ -45,6 +46,11 @@ export const appRouter = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+
+      {
+        path: "/product/:id",
+        element: <Product />,
       },
     ],
   },

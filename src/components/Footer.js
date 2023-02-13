@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <div className="bg-slate-50 h-1/2 w-full flex flex-col sm:flex-row justify-around items-start p-8 mt-auto">
-        <div className="p-5">
+      <div className="bg-slate-50 h-1/2 w-full flex flex-wrap flex-col sm:flex-row justify-between items-start px-24 py-8 mt-auto">
+        <div className="py-4">
           <ul>
             <p className=" font-display text-gray-800 font-bold text-2xl pb-4 ">
               Product
@@ -21,7 +21,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="p-5">
+        <div className="py-4">
           <ul>
             <p className=" font-display text-gray-800 font-bold text-2xl pb-4 ">
               Resources
@@ -38,7 +38,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="p-5">
+        <div className="py-4">
           <ul>
             <p className=" font-display text-gray-800 font-bold text-2xl pb-4 ">
               Policy
@@ -56,7 +56,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="p-5">
+        <div className="py-4">
           <ul>
             <p className=" font-display text-gray-800 font-bold text-2xl pb-4 ">
               Social
@@ -77,7 +77,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center text-center  p-5 bg-slate-50">
+      <div className="flex flex-col justify-center items-center text-center  py-4 bg-slate-50">
         <h1 className=" text-gray-800 font-semibold font-display">
           © 2023 All rights reserved | Build with ❤ by
           <span className="hover:text-slate-600 font-semibold cursor-pointer font-display mx-1">

@@ -15,10 +15,31 @@ const productReducer = (state, action) => {
         products: product,
       };
 
-    case "SET_LOADING":
+    case "ERROR_DATA":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+
+    case "SET_PRODUCT_LOADING":
       return {
         ...state,
         isLoading: true,
+      };
+
+    case "SET_PRODUCT":
+      return {
+        ...state,
+        isLoading: false,
+        product: action.payload,
+      };
+
+    case "SET_PRODUCT_ERROR":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
       };
 
     default:

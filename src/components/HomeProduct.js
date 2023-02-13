@@ -28,11 +28,11 @@ const HomeProduct = ({ title, data }) => {
     <>
       <div className=" w-full bg-red-100">
         <div className="py-4 bg-white">
-          <h1 className="font-display font-bold text-2xl text-slate-900 px-8">
+          <h1 className="font-display font-bold text-2xl text-slate-900 px-24">
             {title}
           </h1>
 
-          <div className=" flex-col flex flex-wrap sm:flex-row sm:justify-between  item-center py-4 px-8  ">
+          <div className=" flex-col flex flex-wrap sm:flex-row sm:justify-between  item-center py-4 px-24  ">
             {data === "mobile"
               ? mobile.map((data) => (
                   <ProductCard
@@ -41,6 +41,7 @@ const HomeProduct = ({ title, data }) => {
                     companyName={data.company}
                     price={data.price}
                     img={data.image}
+                    id={data.id}
                   />
                 ))
               : null}
@@ -53,6 +54,7 @@ const HomeProduct = ({ title, data }) => {
                     companyName={data.company}
                     price={data.price}
                     img={data.image}
+                    id={data.id}
                   />
                 ))
               : null}
@@ -65,6 +67,7 @@ const HomeProduct = ({ title, data }) => {
                     companyName={data.company}
                     price={data.price}
                     img={data.image}
+                    id={data.id}
                   />
                 ))
               : null}

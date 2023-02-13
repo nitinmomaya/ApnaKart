@@ -1,20 +1,32 @@
+import { useProductContext } from "../context/productContext";
 import { useUserAuth } from "../context/UserAuth";
 import HomeProduct from "./HomeProduct";
 
 const Home = () => {
   const { user } = useUserAuth();
-  console.log("DETAIL0", user);
+  const { isLoading, products } = useProductContext();
   //user.email.substring(0, user.email.indexOf("@"))
   const email = user.email
     ? user.email.substring(0, user.email.indexOf("@"))
     : null;
   const name = user.displayName ? user.displayName : email;
 
+  const mobile = products.filter((product) => {
+    return product?.category === "mobile";
+  });
+
+  const laptop = products.filter((product) => {
+    return product?.category === "laptop";
+  });
+  const watch = products.filter((product) => {
+    return product?.category === "watch";
+  });
+
   return (
     <>
       <div className="pt-28 pb-8 space-y-2">
-        <h1 className="font-display font-bold text-3xl text-slate-900 px-8">{`Welcome ${name} to ApnaMart`}</h1>
-        <p className="font-display text-lg text-slate-700 mx-8">
+        <h1 className="font-display font-bold text-3xl text-slate-900 px-24">{`Welcome ${name} to ApnaMart`}</h1>
+        <p className="font-display text-lg text-slate-700 px-24">
           Explore products from different categories and filter products at your
           wish
         </p>
