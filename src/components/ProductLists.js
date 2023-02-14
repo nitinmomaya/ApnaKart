@@ -1,15 +1,31 @@
+import { useState } from "react";
 import { FiAlignJustify, FiGrid, FiSearch } from "react-icons/fi";
+import img from "../assest/Apple-Mobile.jpg";
+import Button from "../UI/Button";
 
 import Dropdown from "../UI/Dropdown";
+import ProductCard from "../UI/ProductCard";
 import ProductList from "../UI/ProductList";
+import Category from "./filters/Category";
+import Colors from "./filters/Colors";
+import Company from "./filters/Company";
+import Price from "./filters/Price";
 
 const ProductLists = () => {
+  const [listView, setListView] = useState(true);
+
+  const handleListView = () => {
+    setListView(true);
+  };
+  const handleCardView = () => {
+    setListView(false);
+  };
   return (
     <>
-      <div className="pt-28 flex flex-col  sm:px-24 px-8">
+      <div className="pt-28 flex flex-col  md:px-24 px-8">
         {/* header content */}
-        <div className="flex justify-between items-center">
-          <div className="w-1/2 space-y-2">
+        <div className="flex lg:flex-row flex-col justify-between items-center space-y-4 w-full">
+          <div className="lg:w-1/2 w-full space-y-2">
             <h1 className="font-display font-bold text-3xl text-slate-900 ">
               Find all products at a single place
             </h1>
@@ -19,96 +35,90 @@ const ProductLists = () => {
             </p>
           </div>
 
-          <div className=" w-1/2 flex justify-end item-center">
-            <div className="relative w-1/2  flex items-center  bg-red-50 justify-end">
-              <FiSearch className="absolute text-slate-400 w-5 h-5  pointer-events-none left-2 " />
+          <div className=" lg:w-1/2 w-full flex lg:justify-end justify-between item-center font-display">
+            <div className="relative lg:w-1/2 w-full  flex items-center  justify-end">
+              <FiSearch className="absolute text-slate-400 sm:w-5 sm:h-5 w-4 h-4  pointer-events-none left-2 " />
               <input
                 type="search"
-                className="  border-slate-200 border-[1px]  bg-white text-slate-400 rounded-md  pl-8  py-2  w-full "
+                className="  border-slate-200 border-[1px]  bg-white sm:text-base text-xs text-slate-400 rounded-md  pl-8  py-2  w-full "
                 placeholder="Search Mobile, Laptop, Accessories..."
               />
             </div>
             <div className="pl-8 justify-end flex  items-center space-x-4">
               <button
                 className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
-                // onClick={handleDecrease}
+                onClick={handleListView}
               >
-                <FiAlignJustify className="w-6 h-6 text-slate-700" />
+                <FiAlignJustify className="sm:w-6 sm:h-6 w-4 h-4 text-slate-700" />
               </button>
 
               <button
                 className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
-                // onClick={handleIncrease}
+                onClick={handleCardView}
               >
-                <FiGrid className="w-6 h-6 text-slate-700" />
+                <FiGrid className="sm:w-6 sm:h-6 w-4 h-4 text-slate-700" />
               </button>
             </div>
           </div>
         </div>
 
         {/* 2nd row content */}
-        <div className="flex justify-between my-4  font-display">
+        <div className="flex flex-col lg:flex-row lg:justify-between my-4  font-display">
           {/* filter options */}
-          <div className=" flex w-1/5 flex-col   space-y-4 ">
-            <div className=" font-display bg-white flex flex-col w-full py-4 px-2 space-y-2 border-slate-200 border-2 rounded-lg">
-              <h1 className="font-semibold text-xl">Category</h1>
-              <div>
-                <ul className="font-display text-slate-600 text-base space-y-2">
-                  <li></li>
-                  <li>Show All Products</li>
-                  <li>Mobile</li>
-                  <li>laptop</li>
-                  <li>Computer</li>
-                  <li>Accessories</li>
-                  <li>Watch</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className=" font-display bg-white flex flex-col w-full py-4 px-2 space-y-2 border-slate-200 border-2 rounded-lg">
-              <h1 className="font-semibold text-xl">Company</h1>
-              <div>
-                <Dropdown />
-              </div>
-            </div>
-
-            <div className=" font-display bg-white flex flex-col w-full py-4 px-2 space-y-2 border-slate-200 border-2 rounded-lg">
-              <h1 className="font-semibold text-xl">Colors</h1>
-              <div className="flex">
-                <div>
-                  <h1 className="pr-4">All</h1>
-                </div>
-                <div className="flex space-x-4">
-                  <button className="w-6 h-6  rounded-md bg-green-500"></button>
-                  <button className="w-6 h-6  rounded-md bg-green-500"></button>
-                  <button className="w-6 h-6  rounded-md bg-green-500"></button>
-                  <button className="w-6 h-6  rounded-md bg-green-500"></button>
-                  <button className="w-6 h-6  rounded-md bg-green-500"></button>
-                </div>
-              </div>
-            </div>
-
-            <div className=" font-display bg-white flex flex-col w-full py-4 px-2 space-y-2 border-slate-200 border-2 rounded-lg">
-              <h1 className="font-semibold text-xl">Price</h1>
-              <div>
-                <h1>Price</h1>
-              </div>
-            </div>
+          <div className=" flex lg:w-1/5 w-full flex-col   space-y-4 ">
+            <Category />
+            <Company />
+            <Colors />
+            <Price />
+            <Button name={"Clear Filter"} />
           </div>
           {/* product display */}
-          <div className="flex flex-col w-3/4  p-4 ">
+          <div className="flex flex-col lg:w-3/4 w-full  lg:px-4 ">
             {/* Header Content for Product */}
-            <div className="flex justify-between w-full my-2">
+            <div className="flex justify-between w-full my-2 items-center">
               <h1 className="font-display font-bold text-xl text-slate-900 ">
                 12 Products Available
               </h1>
               <Dropdown />
             </div>
             {/* Product List Component -name, -description */}
-            <ProductList />
-            <ProductList />
-            <ProductList />
-            <ProductList />
+            <div className="w-full">
+              {listView ? (
+                <div>
+                  <ProductList />
+                  <ProductList />
+                  <ProductList />
+                  <ProductList />
+                </div>
+              ) : (
+                <div className="flex flex-wrap justify-between">
+                  <ProductCard
+                    name={"Iphone 12 Max pro"}
+                    companyName={"Apple"}
+                    price={120000}
+                    img={img}
+                  />
+                  <ProductCard
+                    name={"Iphone 12 Max pro"}
+                    companyName={"Apple"}
+                    price={120000}
+                    img={img}
+                  />
+                  <ProductCard
+                    name={"Iphone 12 Max pro"}
+                    companyName={"Apple"}
+                    price={120000}
+                    img={img}
+                  />
+                  <ProductCard
+                    name={"Iphone 12 Max pro"}
+                    companyName={"Apple"}
+                    price={120000}
+                    img={img}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

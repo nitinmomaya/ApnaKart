@@ -54,7 +54,7 @@ const ProductContent = ({
             <PriceHelper price={price + 200000} />
           </p>
         </div>
-        <p className="font-display font-medium text-base text-gray-500 py-2 ">
+        <p className="font-display  text-base text-gray-700 py-2">
           {description}
         </p>
 

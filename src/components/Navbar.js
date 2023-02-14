@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <>
       <div className="flex flex-col  w-full fixed  justify-end z-10">
-        <div className="flex justify-between  sm:px-24 px-8 py-4   font-display font items-center border-b-slate-200 border-b bg-white w-full ">
+        <div className="flex justify-between  md:px-24 px-8 py-4   font-display font items-center border-b-slate-200 border-b bg-white w-full ">
           <Link to="/">
             <h1 className="font-display font-semibold text-2xl text-slate-700">
               ApnaKart

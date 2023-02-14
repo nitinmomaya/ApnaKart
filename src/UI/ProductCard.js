@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import PriceHelper from "../utils/PriceHelper";
 
-const ProductCard = ({ productName = "", companyName, price, img, id }) => {
+const ProductCard = ({
+  productName = "Iphone 12 Pro Max",
+  companyName,
+  price,
+  img,
+  id,
+}) => {
   return (
     <>
       <Link to={`/product/${id}`}>
