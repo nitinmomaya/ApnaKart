@@ -47,7 +47,7 @@ const Login = () => {
           <img className="w-96 h-96 py-4 px-10" src={img} alt="" />
           <div className=" flex flex-col space-y-2 items-center px-10">
             <h1 className="font-display text-4xl font-bold text-slate-700 text-center">
-              Welcome to ApnaMart
+              Welcome to ApnaKart
             </h1>
             <p className="text-xl text-center">
               Find 5000+ products and get speedy delivery on time

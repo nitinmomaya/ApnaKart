@@ -25,10 +25,9 @@ const Home = () => {
   return (
     <>
       <div className="pt-28 pb-8 space-y-2">
-        <h1 className="font-display font-bold text-3xl text-slate-900 px-24">{`Welcome ${name} to ApnaMart`}</h1>
-        <p className="font-display text-lg text-slate-700 px-24">
-          Explore products from different categories and filter products at your
-          wish
+        <h1 className="font-display font-bold text-3xl text-slate-900 sm:px-24 px-8">{`Welcome ${name} to ApnaKart`}</h1>
+        <p className="font-display text-lg text-slate-700 sm:px-24 px-8">
+          Explore to find all the Latest and Classical Products on your Screen
         </p>
       </div>
       <HomeProduct title={"Latest Mobile"} data={"mobile"} />

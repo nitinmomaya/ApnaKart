@@ -11,6 +11,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import Footer from "./Footer";
 import Home from "./Home";
 import Product from "./Product";
+import Cart from "./Cart";
+import ProductLists from "./ProductLists";
 
 const App = () => {
   return (
@@ -51,6 +53,15 @@ export const appRouter = createBrowserRouter([
       {
         path: "/product/:id",
         element: <Product />,
+      },
+
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/products",
+        element: <ProductLists />,
       },
     ],
   },

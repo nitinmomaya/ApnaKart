@@ -6,6 +6,7 @@ import { useUserAuth } from "../context/UserAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import GoogleSignIn from "../UI/GoogleSignin";
+import Button from "../UI/Button";
 
 const validationSchema = Yup.object({
   name: Yup.string().min(2).max(25).required("Please Enter Your Name"),
@@ -56,7 +57,7 @@ const Signup = ({ setIsLogin, isLogin }) => {
           <img className="w-96 h-96 py-4 px-10" src={img} alt="" />
           <div className=" flex flex-col space-y-2 items-center px-10">
             <h1 className="font-display text-4xl font-bold text-slate-700 text-center">
-              Welcome to ApnaMart
+              Welcome to ApnaKart
             </h1>
             <p className="text-xl text-center">
               Find 5000+ products and get speedy delivery on time
@@ -132,12 +133,7 @@ const Signup = ({ setIsLogin, isLogin }) => {
                 errors={errors.confirm_password}
                 touched={touched.confirm_password}
               />
-              <button
-                type="submit"
-                className="w-full bg-slate-700 text-gray-50 font-display font-semibold px-6 py-3 rounded"
-              >
-                Sign Up
-              </button>
+              <Button type={"submit"} name={"Sign Up"} />
             </form>
           </div>
         </div>
