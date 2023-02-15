@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiAlignJustify, FiGrid, FiSearch } from "react-icons/fi";
 import img from "../assest/Apple-Mobile.jpg";
+import { useFilterProductContext } from "../context/filterProductContext";
 import Button from "../UI/Button";
 
 import Dropdown from "../UI/Dropdown";
@@ -13,6 +14,13 @@ import Price from "./filters/Price";
 
 const ProductLists = () => {
   const [listView, setListView] = useState(true);
+
+  const { filterProduct } = useFilterProductContext();
+  console.log("filter", filterProduct);
+  //to load page from top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleListView = () => {
     setListView(true);
@@ -34,31 +42,35 @@ const ProductLists = () => {
               your wish
             </p>
           </div>
-
+          {/*SEARCH SECTION */}
           <div className=" lg:w-1/2 w-full flex lg:justify-end justify-between item-center font-display">
+            {/* SearchBar Start */}
             <div className="relative lg:w-1/2 w-full  flex items-center  justify-end">
-              <FiSearch className="absolute text-slate-400 sm:w-5 sm:h-5 w-4 h-4  pointer-events-none left-2 " />
+              <FiSearch className="absolute text-slate-400 sm:w-6 sm:h-6 w-4 h-4  pointer-events-none left-3 " />
               <input
                 type="search"
-                className="  border-slate-200 border-[1px]  bg-white sm:text-base text-xs text-slate-400 rounded-md  pl-8  py-2  w-full "
+                className="  border-slate-200 border-[1px]  bg-white sm:text-base text-xs text-slate-400 rounded-md pl-12  py-3  w-full "
                 placeholder="Search Mobile, Laptop, Accessories..."
               />
             </div>
-            <div className="pl-8 justify-end flex  items-center space-x-4">
-              <button
-                className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
-                onClick={handleListView}
-              >
-                <FiAlignJustify className="sm:w-6 sm:h-6 w-4 h-4 text-slate-700" />
-              </button>
+            {/* SearchBar End */}
 
+            {/* Change View Section */}
+            <div className="pl-8 justify-end flex  items-center space-x-4">
               <button
                 className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
                 onClick={handleCardView}
               >
                 <FiGrid className="sm:w-6 sm:h-6 w-4 h-4 text-slate-700" />
               </button>
+              <button
+                className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
+                onClick={handleListView}
+              >
+                <FiAlignJustify className="sm:w-6 sm:h-6 w-4 h-4 text-slate-700" />
+              </button>
             </div>
+            {/* Change View End */}
           </div>
         </div>
 
@@ -73,49 +85,38 @@ const ProductLists = () => {
             <Button name={"Clear Filter"} />
           </div>
           {/* product display */}
-          <div className="flex flex-col lg:w-3/4 w-full  lg:px-4 ">
+          <div className="flex flex-col lg:w-3/4 w-full  lg:px-4 py-4 my-4">
             {/* Header Content for Product */}
             <div className="flex justify-between w-full my-2 items-center">
-              <h1 className="font-display font-bold text-xl text-slate-900 ">
-                12 Products Available
+              <h1 className="font-display font-bold text-2xl text-slate-900 ">
+                {filterProduct.length} Products Available
               </h1>
               <Dropdown />
             </div>
             {/* Product List Component -name, -description */}
             <div className="w-full">
               {listView ? (
-                <div>
-                  <ProductList />
-                  <ProductList />
-                  <ProductList />
-                  <ProductList />
-                </div>
+                filterProduct.map((filter) => (
+                  <ProductList
+                    productName={filter.name}
+                    price={filter.price}
+                    id={filter.id}
+                    description={filter.description}
+                    img={filter.image}
+                  />
+                ))
               ) : (
                 <div className="flex flex-wrap justify-between">
-                  <ProductCard
-                    name={"Iphone 12 Max pro"}
-                    companyName={"Apple"}
-                    price={120000}
-                    img={img}
-                  />
-                  <ProductCard
-                    name={"Iphone 12 Max pro"}
-                    companyName={"Apple"}
-                    price={120000}
-                    img={img}
-                  />
-                  <ProductCard
-                    name={"Iphone 12 Max pro"}
-                    companyName={"Apple"}
-                    price={120000}
-                    img={img}
-                  />
-                  <ProductCard
-                    name={"Iphone 12 Max pro"}
-                    companyName={"Apple"}
-                    price={120000}
-                    img={img}
-                  />
+                  {filterProduct.map((filter) => (
+                    <ProductCard
+                      key={filter.id}
+                      productName={filter.name}
+                      companyName={filter.company}
+                      price={filter.price}
+                      img={filter.image}
+                      id={filter.id}
+                    />
+                  ))}
                 </div>
               )}
             </div>

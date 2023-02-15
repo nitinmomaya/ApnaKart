@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import ProductShimmer from "../components/shimmer/ProductShimmer";
+import ProductShimmer from "./shimmer/ProductShimmer";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../../contant";
 import { useProductContext } from "../context/productContext";
 import ProductContent from "./ProductContent";
 import ProductImage from "./ProductImage";
 
-const Product = () => {
+const ProductDetail = () => {
   const params = useParams();
   const { id } = params;
   const { getProduct, isLoading, product } = useProductContext();
@@ -62,4 +62,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductDetail;

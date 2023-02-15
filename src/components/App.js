@@ -10,7 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import Footer from "./Footer";
 import Home from "./Home";
-import Product from "./Product";
+import ProductDetail from "./ProductDetail";
 import Cart from "./Cart";
 import ProductLists from "./ProductLists";
 
@@ -52,7 +52,7 @@ export const appRouter = createBrowserRouter([
 
       {
         path: "/product/:id",
-        element: <Product />,
+        element: <ProductDetail />,
       },
 
       {
