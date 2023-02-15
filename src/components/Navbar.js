@@ -5,7 +5,7 @@ import { useUserAuth } from "../context/UserAuth";
 
 const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
-  let { user, logout } = useUserAuth();
+  const { user, logout } = useUserAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {

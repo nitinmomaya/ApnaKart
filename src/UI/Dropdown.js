@@ -1,7 +1,64 @@
-const Dropdown = () => {
+import { useState } from "react";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { useFilterProductContext } from "../context/filterProductContext";
+
+const Dropdown = ({ name, options = [{ name: "" }] }) => {
+  const [show, setShow] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [label, setLabel] = useState("All");
+  const { sort } = useFilterProductContext();
+
+  const handleShow = (e) => {
+    e.preventDefault();
+    setShow(!show);
+    setIsOpen(!isOpen);
+  };
+
+  // const lowest = () => {
+  //   console.log("PRESSED");
+  // };
   return (
     <>
-      <h1>This is Dropdown</h1>
+      <div className="w-full flex items-center">
+        {name && <p className="w-28">{name}</p>}
+        <div className="w-full relative flex items-center">
+          <button
+            onClick={handleShow}
+            className=" w-full justify-between flex items-center bg-white px-2 py-2 rounded-md border-[1px]  border-slate-200"
+          >
+            {label}
+            {isOpen ? (
+              <FiChevronUp className="mx-2 w-5 h-5 text-slate-600" />
+            ) : (
+              <FiChevronDown className="mx-2 w-5 h-5 text-slate-600" />
+            )}
+          </button>
+
+          <div
+            className={
+              show
+                ? "absolute bg-white z-10   rounded-md border-[1px] top-12 w-full border-slate-200 "
+                : "hidden"
+            }
+          >
+            {options.map((opt, index) => (
+              <div
+                key={index}
+                onClick={() => {
+                  sort(opt.value);
+                  setLabel(opt.name);
+                  setIsOpen(!isOpen);
+
+                  setShow(!show);
+                }}
+                className="py-3 px-4 cursor-pointer  hover:bg-slate-50 "
+              >
+                {opt.name}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   );
 };

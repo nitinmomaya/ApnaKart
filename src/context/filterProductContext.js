@@ -8,8 +8,9 @@ export const FilterProductContextProvider = ({ children }) => {
   const initialState = {
     filterProduct: [],
     allProducts: [],
-    gridView: true,
-    listView: false,
+    listView: true,
+    gridView: false,
+    sortType: "highest",
   };
   const { products } = useProductContext();
 
@@ -23,13 +24,23 @@ export const FilterProductContextProvider = ({ children }) => {
     return dispatch({ type: "SET_LIST_VIEW" });
   };
 
+  const sort = (sortValue) => {
+    dispatch({ type: "SET_SORT_TYPE", payload: sortValue });
+  };
+
+  //Sort the product after sortType Changes
+  useEffect(() => {
+    console.log("DROPDOWN VALUE CHANGED :))");
+    dispatch({ type: "SORT_PRODUCTS", payload: products });
+  }, [state.sortType]);
+
   useEffect(() => {
     dispatch({ type: "LOAD_FILTER_DATA", payload: products });
   }, [products]);
 
   return (
     <FilterProductContext.Provider
-      value={{ ...state, setGridView, setListView }}
+      value={{ ...state, setGridView, setListView, setGridView, sort }}
     >
       {children}
     </FilterProductContext.Provider>

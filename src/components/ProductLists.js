@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { FiAlignJustify, FiGrid, FiSearch } from "react-icons/fi";
-import img from "../assest/Apple-Mobile.jpg";
 import { useFilterProductContext } from "../context/filterProductContext";
 import Button from "../UI/Button";
 
@@ -13,21 +12,14 @@ import Company from "./filters/Company";
 import Price from "./filters/Price";
 
 const ProductLists = () => {
-  const [listView, setListView] = useState(true);
-
-  const { filterProduct } = useFilterProductContext();
-  console.log("filter", filterProduct);
+  const { filterProduct, listView, setGridView, setListView } =
+    useFilterProductContext();
+  console.log("filter", filterProduct, "GRID", listView);
   //to load page from top
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleListView = () => {
-    setListView(true);
-  };
-  const handleCardView = () => {
-    setListView(false);
-  };
   return (
     <>
       <div className="pt-28 flex flex-col  md:px-24 px-8">
@@ -59,13 +51,13 @@ const ProductLists = () => {
             <div className="pl-8 justify-end flex  items-center space-x-4">
               <button
                 className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
-                onClick={handleCardView}
+                onClick={setGridView}
               >
                 <FiGrid className="sm:w-6 sm:h-6 w-4 h-4 text-slate-700" />
               </button>
               <button
                 className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
-                onClick={handleListView}
+                onClick={setListView}
               >
                 <FiAlignJustify className="sm:w-6 sm:h-6 w-4 h-4 text-slate-700" />
               </button>
@@ -85,19 +77,30 @@ const ProductLists = () => {
             <Button name={"Clear Filter"} />
           </div>
           {/* product display */}
-          <div className="flex flex-col lg:w-3/4 w-full  lg:px-4 py-4 my-4">
+          <div className="flex flex-col lg:w-3/4 w-full   ">
             {/* Header Content for Product */}
-            <div className="flex justify-between w-full my-2 items-center">
-              <h1 className="font-display font-bold text-2xl text-slate-900 ">
+            <div className="flex justify-between w-full my-2 md:items-center md:flex-row flex-col">
+              <h1 className="font-display font-bold text-2xl text-slate-900 w-3/4 ">
                 {filterProduct.length} Products Available
               </h1>
-              <Dropdown />
+              <div className="lg:w-1/4 sm:w-1/2  w-full py-2">
+                <Dropdown
+                  name={"Sort By:"}
+                  options={[
+                    { name: "Price: Low to High", value: "lowest" },
+                    { name: "Price: High to Low", value: "highest" },
+                    { name: "Sort: A to Z", value: "lowest-A-Z" },
+                    { name: "Sort: Z to A", value: "highest-A-Z" },
+                  ]}
+                />
+              </div>
             </div>
             {/* Product List Component -name, -description */}
             <div className="w-full">
               {listView ? (
                 filterProduct.map((filter) => (
                   <ProductList
+                    key={filter.id}
                     productName={filter.name}
                     price={filter.price}
                     id={filter.id}

@@ -8,11 +8,11 @@ import { FilterProductContextProvider } from "./src/context/filterProductContext
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ProductProvider>
-    <UserAuthContextProvider>
+  <UserAuthContextProvider>
+    <ProductProvider>
       <FilterProductContextProvider>
         <RouterProvider router={appRouter} />
       </FilterProductContextProvider>
-    </UserAuthContextProvider>
-  </ProductProvider>
+    </ProductProvider>
+  </UserAuthContextProvider>
 );
