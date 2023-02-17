@@ -10,7 +10,7 @@ export const FilterProductContextProvider = ({ children }) => {
     allProducts: [],
     listView: true,
     gridView: false,
-    sortType: "highest",
+    sortType: "all",
 
     // creating filter objects of all filter type
     filters: {

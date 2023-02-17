@@ -15,7 +15,7 @@ import Price from "./filters/Price";
 const ProductLists = () => {
   const { filterProduct, listView, setGridView, setListView } =
     useFilterProductContext();
-  console.log("filter", filterProduct, "GRID", listView);
+  console.log("filter", filterProduct, "LIST", listView);
   //to load page from top
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -81,6 +81,7 @@ const ProductLists = () => {
                 <Dropdown
                   name={"Sort By:"}
                   options={[
+                    { name: " Show All", value: "all" },
                     { name: "Price: High to Low", value: "highest" },
                     { name: "Price: Low to High", value: "lowest" },
                     { name: "Sort: A to Z", value: "lowest-A-Z" },

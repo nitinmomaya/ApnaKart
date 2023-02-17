@@ -5,7 +5,7 @@ import { useFilterProductContext } from "../context/filterProductContext";
 const Dropdown = ({ name, options = [], type }) => {
   const [show, setShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [label, setLabel] = useState("All");
+  const [label, setLabel] = useState("Show All");
   const { sort, filterType } = useFilterProductContext();
 
   const handleShow = (e) => {

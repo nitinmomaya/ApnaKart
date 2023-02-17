@@ -50,6 +50,10 @@ const filterProductReducer = (state, action) => {
         if (sortType === "highest-A-Z") {
           return b.name.localeCompare(a.name);
         }
+
+        if (sortType === "all") {
+          return tempSortProduct;
+        }
       };
 
       sortData = tempSortProduct.sort(sortingProducts);
@@ -75,7 +79,7 @@ const filterProductReducer = (state, action) => {
       const { allProducts } = state;
       let tempFilterProduct = allProducts;
 
-      const { search, category, company } = state.filters;
+      const { search, category, company, color } = state.filters;
 
       if (search) {
         tempFilterProduct = tempFilterProduct.filter((prod) => {
@@ -93,6 +97,12 @@ const filterProductReducer = (state, action) => {
       if (company !== "all") {
         tempFilterProduct = tempFilterProduct.filter(
           (comp) => comp.company.toLowerCase() === company.toLowerCase()
+        );
+      }
+
+      if (color != "all") {
+        tempFilterProduct = tempFilterProduct.filter((col) =>
+          col.colors.includes(color)
         );
       }
 

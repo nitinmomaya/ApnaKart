@@ -19,7 +19,7 @@ const Search = () => {
           <FiSearch className="absolute text-slate-400 sm:w-6 sm:h-6 w-4 h-4  pointer-events-none left-3  " />
           <input
             type="search"
-            className="  border-slate-200 border-[1px]  bg-white lg:text-base text-xs text-slate-400 rounded-md pl-12 pr-2  py-3  w-full focus:text-slate-700 focus:text-lg focus:font-normal font-normal font-display focus:bg-white focus:border-slate-400 focus:outline-none"
+            className="  border-slate-200 border-[1px]  bg-white lg:text-base text-xs text-slate-400 rounded-md pl-12 pr-2  py-3  w-full focus:text-slate-800  focus:font-normal font-normal font-display focus:bg-white focus:border-slate-400 focus:outline-none"
             placeholder="Search Mobile, Laptop, Accessories..."
             onChange={(e) => setValue(e.target.value)}
             value={value}
