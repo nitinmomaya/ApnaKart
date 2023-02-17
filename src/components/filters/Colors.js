@@ -1,7 +1,7 @@
 const Colors = () => {
   return (
     <>
-      <div className=" font-display bg-white flex flex-col w-full py-4 px-2 space-y-2 border-slate-200 border-[1px] rounded-lg">
+      <div className=" font-display bg-white flex flex-col w-full py-4 px-4 space-y-2 border-slate-200 border-[1px] rounded-lg">
         <h1 className="font-semibold text-xl text-slate-700">Colors</h1>
 
         <div className="flex flex-wrap md:space-x-4 space-x-2 space-y-2 items-center">

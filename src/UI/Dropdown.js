@@ -6,7 +6,7 @@ const Dropdown = ({ name, options = [], type }) => {
   const [show, setShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [label, setLabel] = useState("All");
-  const { sort, filter } = useFilterProductContext();
+  const { sort, filterType } = useFilterProductContext();
 
   const handleShow = (e) => {
     e.preventDefault();
@@ -41,6 +41,18 @@ const Dropdown = ({ name, options = [], type }) => {
                 : "hidden"
             }
           >
+            {type === "company" ? (
+              <div
+                className="py-3 px-4 cursor-pointer  hover:bg-slate-50 "
+                onClick={() => {
+                  filterType("company", "all");
+                  setLabel("Show All");
+                  setShow(!show);
+                }}
+              >
+                Show All
+              </div>
+            ) : null}
             {options.map((opt, index) => (
               <div
                 key={index}
@@ -49,7 +61,7 @@ const Dropdown = ({ name, options = [], type }) => {
                     sort && sort(opt.value);
                   }
                   {
-                    filter && filter(type, opt);
+                    filterType && filterType(type, opt);
                   }
                   setLabel(
                     opt.name

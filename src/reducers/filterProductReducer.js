@@ -75,12 +75,26 @@ const filterProductReducer = (state, action) => {
       const { allProducts } = state;
       let tempFilterProduct = allProducts;
 
-      const { search } = state.filters;
+      const { search, category, company } = state.filters;
 
-      tempFilterProduct = tempFilterProduct.filter((prod) => {
-        return prod.name.toLowerCase().includes(search);
-      });
-      console.log("TEMP FIL", tempFilterProduct);
+      if (search) {
+        tempFilterProduct = tempFilterProduct.filter((prod) => {
+          return prod.name.toLowerCase().includes(search);
+        });
+        console.log("TEMP FIL", tempFilterProduct);
+      }
+
+      if (category !== "all") {
+        tempFilterProduct = tempFilterProduct.filter(
+          (cat) => cat.category === category
+        );
+      }
+
+      if (company !== "all") {
+        tempFilterProduct = tempFilterProduct.filter(
+          (comp) => comp.company.toLowerCase() === company.toLowerCase()
+        );
+      }
 
       return {
         ...state,
