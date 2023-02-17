@@ -6,6 +6,7 @@ import Button from "../UI/Button";
 import Dropdown from "../UI/Dropdown";
 import ProductCard from "../UI/ProductCard";
 import ProductList from "../UI/ProductList";
+import Search from "../UI/Search";
 import Category from "./filters/Category";
 import Colors from "./filters/Colors";
 import Company from "./filters/Company";
@@ -24,7 +25,7 @@ const ProductLists = () => {
     <>
       <div className="pt-28 flex flex-col  md:px-24 px-8">
         {/* header content */}
-        <div className="flex lg:flex-row flex-col justify-between items-center space-y-4 w-full">
+        <div className="flex lg:flex-row flex-col justify-between items-center  space-y-4 w-full">
           <div className="lg:w-1/2 w-full space-y-2">
             <h1 className="font-display font-bold text-3xl text-slate-900 ">
               Find all products at a single place
@@ -35,22 +36,15 @@ const ProductLists = () => {
             </p>
           </div>
           {/*SEARCH SECTION */}
-          <div className=" lg:w-1/2 w-full flex lg:justify-end justify-between item-center font-display">
+          <div className=" lg:w-1/2 w-full flex lg:justify-end justify-between sm:item-center font-display">
             {/* SearchBar Start */}
-            <div className="relative lg:w-1/2 w-full  flex items-center  justify-end">
-              <FiSearch className="absolute text-slate-400 sm:w-6 sm:h-6 w-4 h-4  pointer-events-none left-3 " />
-              <input
-                type="search"
-                className="  border-slate-200 border-[1px]  bg-white sm:text-base text-xs text-slate-400 rounded-md pl-12  py-3  w-full "
-                placeholder="Search Mobile, Laptop, Accessories..."
-              />
-            </div>
+            <Search />
             {/* SearchBar End */}
 
             {/* Change View Section */}
-            <div className="pl-8 justify-end flex  items-center space-x-4">
+            <div className="pl-8 justify-end flex  sm:items-center  space-x-4">
               <button
-                className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
+                className=" flex  p-2  border-slate-200 border-[1px] rounded-md  "
                 onClick={setGridView}
               >
                 <FiGrid className="sm:w-6 sm:h-6 w-4 h-4 text-slate-700" />
@@ -67,7 +61,7 @@ const ProductLists = () => {
         </div>
 
         {/* 2nd row content */}
-        <div className="flex flex-col lg:flex-row lg:justify-between my-4  font-display">
+        <div className="flex flex-col-reverse lg:flex-row lg:justify-between my-4  font-display">
           {/* filter options */}
           <div className=" flex lg:w-1/5 w-full flex-col   space-y-4 ">
             <Category />
@@ -87,8 +81,8 @@ const ProductLists = () => {
                 <Dropdown
                   name={"Sort By:"}
                   options={[
-                    { name: "Price: Low to High", value: "lowest" },
                     { name: "Price: High to Low", value: "highest" },
+                    { name: "Price: Low to High", value: "lowest" },
                     { name: "Sort: A to Z", value: "lowest-A-Z" },
                     { name: "Sort: Z to A", value: "highest-A-Z" },
                   ]}

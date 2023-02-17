@@ -2,11 +2,11 @@ import { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useFilterProductContext } from "../context/filterProductContext";
 
-const Dropdown = ({ name, options = [{ name: "" }] }) => {
+const Dropdown = ({ name, options = [], type }) => {
   const [show, setShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [label, setLabel] = useState("All");
-  const { sort } = useFilterProductContext();
+  const { sort, filter } = useFilterProductContext();
 
   const handleShow = (e) => {
     e.preventDefault();
@@ -45,15 +45,26 @@ const Dropdown = ({ name, options = [{ name: "" }] }) => {
               <div
                 key={index}
                 onClick={() => {
-                  sort(opt.value);
-                  setLabel(opt.name);
+                  {
+                    sort && sort(opt.value);
+                  }
+                  {
+                    filter && filter(type, opt);
+                  }
+                  setLabel(
+                    opt.name
+                      ? opt.name
+                      : opt.charAt(0).toUpperCase() + opt.slice(1)
+                  );
                   setIsOpen(!isOpen);
-
+                  console.log("OPT:", opt);
                   setShow(!show);
                 }}
                 className="py-3 px-4 cursor-pointer  hover:bg-slate-50 "
               >
-                {opt.name}
+                {opt.name
+                  ? opt.name
+                  : opt.charAt(0).toUpperCase() + opt.slice(1)}
               </div>
             ))}
           </div>

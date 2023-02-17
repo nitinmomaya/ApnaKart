@@ -59,6 +59,34 @@ const filterProductReducer = (state, action) => {
         filterProduct: sortData,
       };
 
+    case "GET_FILTER_TYPE":
+      const { type, value } = action.payload;
+      console.log("TYPE:", type, "VALUE:", value);
+
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [type]: value,
+        },
+      };
+
+    case "FILTER_PRODUCTS":
+      const { allProducts } = state;
+      let tempFilterProduct = allProducts;
+
+      const { search } = state.filters;
+
+      tempFilterProduct = tempFilterProduct.filter((prod) => {
+        return prod.name.toLowerCase().includes(search);
+      });
+      console.log("TEMP FIL", tempFilterProduct);
+
+      return {
+        ...state,
+        filterProduct: tempFilterProduct,
+      };
+
     default:
       return state;
   }

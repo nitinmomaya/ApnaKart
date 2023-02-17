@@ -1,4 +1,3 @@
-import img from "../assest/Apple-Mobile.jpg";
 import { useProductContext } from "../context/productContext";
 import ProductCard from "../UI/ProductCard";
 import Shimmer from "../components/shimmer/Shimmer";
@@ -18,7 +17,11 @@ const HomeProduct = ({ title, data }) => {
   });
 
   if (isLoading) {
-    return <Shimmer />;
+    return (
+      <>
+        <Shimmer />
+      </>
+    );
   } else {
     console.log("HOME", data);
     console.log("MOBILE", mobile);

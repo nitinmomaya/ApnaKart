@@ -5,11 +5,16 @@ import { API_URL } from "../../contant";
 import { useProductContext } from "../context/productContext";
 import ProductContent from "./ProductContent";
 import ProductImage from "./ProductImage";
+import { useFilterProductContext } from "../context/filterProductContext";
 
 const ProductDetail = () => {
   const params = useParams();
   const { id } = params;
   const { getProduct, isLoading, product } = useProductContext();
+  const { filterProduct } = useFilterProductContext();
+
+  console.log("PRODUCTS DETAIL", product);
+  console.log("FILTER DETAIL", filterProduct);
 
   //to load page from top
   useEffect(() => {
@@ -30,6 +35,7 @@ const ProductDetail = () => {
 
   const [mainImg, setMainImg] = useState(image[0].url);
   console.log("COLOR", colors);
+  console.log("PRODUCTS", product);
 
   //Rating stars
 

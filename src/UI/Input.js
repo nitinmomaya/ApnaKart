@@ -28,7 +28,7 @@ const Input = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className="my-2 bg-gray-50 border font-display border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        className="my-2 bg-gray-50 border font-display border-gray-300 text-gray-900 text-sm rounded focus:bg-white focus:border-slate-400 focus:outline-none block w-full p-2.5"
         placeholder={placeholder}
       />
       <div className="mb-4">
