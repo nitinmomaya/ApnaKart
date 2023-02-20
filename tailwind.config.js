@@ -7,5 +7,5 @@ module.exports = {
       display: ["Inter"],
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };

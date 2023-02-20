@@ -18,6 +18,9 @@ export const FilterProductContextProvider = ({ children }) => {
       category: "all",
       company: "all",
       color: "all",
+      maxPrice: 0,
+      price: 0,
+      minPrice: 0,
     },
   };
   const { products } = useProductContext();

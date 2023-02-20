@@ -91,33 +91,39 @@ const ProductLists = () => {
               </div>
             </div>
             {/* Product List Component -name, -description */}
-            <div className="w-full">
-              {listView ? (
-                filterProduct.map((filter) => (
-                  <ProductList
-                    key={filter.id}
-                    productName={filter.name}
-                    price={filter.price}
-                    id={filter.id}
-                    description={filter.description}
-                    img={filter.image}
-                  />
-                ))
-              ) : (
-                <div className="flex flex-wrap justify-between">
-                  {filterProduct.map((filter) => (
-                    <ProductCard
+            {filterProduct.length === 0 ? (
+              <div className=" flex justify-center items-center w-full h-full">
+                <h1>NO PROD FOUND</h1>
+              </div>
+            ) : (
+              <div className="w-full">
+                {listView ? (
+                  filterProduct.map((filter) => (
+                    <ProductList
                       key={filter.id}
                       productName={filter.name}
-                      companyName={filter.company}
                       price={filter.price}
-                      img={filter.image}
                       id={filter.id}
+                      description={filter.description}
+                      img={filter.image}
                     />
-                  ))}
-                </div>
-              )}
-            </div>
+                  ))
+                ) : (
+                  <div className="flex flex-wrap justify-between">
+                    {filterProduct.map((filter) => (
+                      <ProductCard
+                        key={filter.id}
+                        productName={filter.name}
+                        companyName={filter.company}
+                        price={filter.price}
+                        img={filter.image}
+                        id={filter.id}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
