@@ -6,9 +6,13 @@ const ProductList = ({ productName = "", price, img, id, description }) => {
   return (
     <>
       <Link to={`/product/${id}`}>
-        <div className="flex w-full lg:flex-row  lg:space-x-8 md:justify-between lg:align-top item-center justify-center space-y-4 my-4 flex-col ">
-          <img className="md:w-80 h-80 w-full rounded-md " src={img} alt="" />
-          <div className="flex flex-col w-full space-y-4 ">
+        <div className="flex w-full xl:flex-row  xl:space-x-8 md:justify-between xl:align-top item-center justify-center 2xl:space-y-4  lg:my-4 my-8 flex-col ">
+          <img
+            className="xl:w-80  xl:h-80 w-full rounded-md "
+            src={img}
+            alt=""
+          />
+          <div className="flex flex-col w-full space-y-0 xl:space-y-4 ">
             {/* product overview */}
             <h1 className="font-display font-bold text-2xl text-slate-900 ">
               {/* To make first letter capital */}

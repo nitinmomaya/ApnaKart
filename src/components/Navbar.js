@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <>
       <div className="flex flex-col  w-full fixed  justify-end z-10">
-        <div className="flex justify-between  md:px-24 px-8 py-4   font-display font items-center border-b-slate-200 border-b bg-white w-full ">
+        <div className="flex justify-between  xl:px-24 px-8 py-4   font-display font items-center border-b-slate-200 border-b bg-white w-full ">
           <Link to="/">
             <h1 className="font-display font-semibold text-2xl text-slate-700">
               ApnaKart
@@ -47,11 +47,6 @@ const Navbar = () => {
               </li>
             </Link>
 
-            <Link to="/contact">
-              <li className="font-display text-gray-500 font-semibold hover:text-slate-700">
-                Contact
-              </li>
-            </Link>
             <Link to="/cart">
               <div className=" flex justify-center items-center font-display text-gray-500 font-semibold hover:text-slate-700">
                 <h1 className="px-2">Cart</h1>
@@ -115,11 +110,6 @@ const Navbar = () => {
               </li>
             </Link>
 
-            <Link to="/contact">
-              <li className="  font-display text-gray-500 font-semibold hover:text-slate-700 ">
-                Contact
-              </li>
-            </Link>
             <Link to="/cart">
               <div className=" flex justify-center items-center font-display text-gray-500 font-semibold hover:text-slate-700">
                 <h1 className=" pr-4">Cart</h1>

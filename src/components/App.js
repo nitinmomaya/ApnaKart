@@ -1,18 +1,16 @@
 import Login from "./Login";
 import Signup from "./Signup";
-
-//<---Creating Routing Configuration--->
-import { createBrowserRouter, Outlet } from "react-router-dom";
-import About from "./About";
-import Contact from "./Contact";
-import Navbar from "./Navbar";
 import ProtectedRoute from "./ProtectedRoute";
-
+import About from "./About";
+import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Home from "./Home";
 import ProductDetail from "./ProductDetail";
 import Cart from "./Cart";
 import ProductLists from "./ProductLists";
+
+//<---Creating Routing Configuration--->
+import { createBrowserRouter, Outlet } from "react-router-dom";
 
 const App = () => {
   return (
@@ -44,10 +42,6 @@ export const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-      },
-      {
-        path: "contact",
-        element: <Contact />,
       },
 
       {

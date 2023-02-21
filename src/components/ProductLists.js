@@ -13,7 +13,7 @@ import Company from "./filters/Company";
 import Price from "./filters/Price";
 
 const ProductLists = () => {
-  const { filterProduct, listView, setGridView, setListView } =
+  const { filterProduct, listView, setGridView, setListView, clearFilter } =
     useFilterProductContext();
   console.log("filter", filterProduct, "LIST", listView);
   //to load page from top
@@ -23,7 +23,7 @@ const ProductLists = () => {
 
   return (
     <>
-      <div className="pt-28 flex flex-col  md:px-24 px-8">
+      <div className="pt-28 flex flex-col  xl:px-24 px-8 ">
         {/* header content */}
         <div className="flex lg:flex-row flex-col justify-between items-center  space-y-4 w-full">
           <div className="lg:w-1/2 w-full space-y-2">
@@ -42,7 +42,7 @@ const ProductLists = () => {
             {/* SearchBar End */}
 
             {/* Change View Section */}
-            <div className="pl-8 justify-end flex  sm:items-center  space-x-4">
+            <div className="pl-8 justify-end flex  items-center align-top  space-x-4">
               <button
                 className=" flex  p-2  border-slate-200 border-[1px] rounded-md  "
                 onClick={setGridView}
@@ -68,7 +68,7 @@ const ProductLists = () => {
             <Company />
             <Colors />
             <Price />
-            <Button name={"Clear Filter"} />
+            <Button name={"Clear Filter"} handle={clearFilter} />
           </div>
           {/* product display */}
           <div className="flex flex-col lg:w-3/4 w-full   ">

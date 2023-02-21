@@ -1,31 +1,27 @@
-import { FiStar, FiCheck, FiPlus, FiMinus } from "react-icons/fi";
-import { BsHandbag } from "react-icons/bs";
+import { FiStar, FiCheck } from "react-icons/fi";
+
 import PriceHelper from "../utils/PriceHelper";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
-const ProductContent = ({
-  name,
-  stars,
-  reviews,
-  price,
-  description,
-  stock,
+import ProductQuantity from "./ProductQuantity";
 
-  colors = [],
-}) => {
-  console.log("CONT COLOR", colors);
+const ProductContent = ({ product }) => {
+  const {
+    name,
+    id,
+    stars,
+    reviews,
+    price,
+    description,
+    stock,
+
+    colors = [],
+  } = product;
+
+  console.log("CONT COLOR", colors, "PROD CONT", product);
 
   const [col, setCol] = useState(colors[0]);
-  const [quantity, setQuantity] = useState(1);
 
-  const handleIncrease = () => {
-    quantity < stock ? setQuantity(quantity + 1) : setQuantity(stock);
-  };
-
-  const handleDecrease = () => {
-    quantity <= 1 ? setQuantity(1) : setQuantity(quantity - 1);
-  };
   return (
     <>
       <div className=" md:w-1/2 w-full flex flex-col ">
@@ -34,7 +30,7 @@ const ProductContent = ({
         </h1>
         <div className="flex sm:justify-between sm:flex-row flex-col sm:items-center">
           <h1 className=" font-display font-semibold text-2xl text-gray-700 pb-2">
-            {name.toUpperCase()}
+            {name ? name.charAt(0).toUpperCase() + name.slice(1) : name}
           </h1>
           <div className="flex sm:justify-between sm:flex-row items-center space-x-4">
             <div className="flex px-2 py-2 space-x-1 bg-green-600 rounded-md  items-center">
@@ -83,25 +79,7 @@ const ProductContent = ({
             })}
           </div>
         </div>
-        <div className="w-44 justify-between flex pt-8 py-4 items-center space-x-6">
-          <button
-            className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
-            onClick={handleDecrease}
-          >
-            <FiMinus className="w-8 h-8 text-slate-700" />
-          </button>
-          <p className="text-slate-700 text-xl font-display font-semibold">
-            {quantity}
-          </p>
-          <button
-            className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
-            onClick={handleIncrease}
-          >
-            <FiPlus className="w-8 h-8 text-slate-700" />
-          </button>
-        </div>
-
-        <div className="flex">
+        <div className="flex py-4">
           <p className="font-display font-semibold text-md text-slate-500 pb-2 pr-2">
             Stock Available:
           </p>
@@ -109,13 +87,15 @@ const ProductContent = ({
             {stock}
           </p>
         </div>
-
-        <Link to="/cart">
-          <button className=" flex w-full bg-slate-700 rounded-md py-4 my-4 text-white  justify-center item-c space-x-3 ">
-            <BsHandbag className="w-6 h-6  " />
-            <p className="font-display font-semibold ">Add to Cart</p>
-          </button>
-        </Link>
+        <div className="w-full">
+          <ProductQuantity
+            id={id}
+            colors={col}
+            stock={stock}
+            product={product}
+            show={true}
+          />
+        </div>
       </div>
     </>
   );

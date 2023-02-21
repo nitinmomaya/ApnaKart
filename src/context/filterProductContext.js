@@ -49,6 +49,11 @@ export const FilterProductContextProvider = ({ children }) => {
     return dispatch({ type: "GET_FILTER_TYPE", payload: { type, value } });
   };
 
+  // to clear the filter
+  const clearFilter = () => {
+    dispatch({ type: "CLEAR_FILTER" });
+  };
+
   //Sort the product after sortType Changes
   useEffect(() => {
     console.log("DROPDOWN VALUE CHANGED :))");
@@ -70,6 +75,7 @@ export const FilterProductContextProvider = ({ children }) => {
         setGridView,
         sort,
         filterType,
+        clearFilter,
       }}
     >
       {children}

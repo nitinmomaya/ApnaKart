@@ -26,10 +26,10 @@ const Home = () => {
     <>
       {!isLoading ? (
         <div className="pt-28 pb-8 space-y-2">
-          <h1 className="font-display font-bold text-3xl text-slate-900 sm:px-24 px-8">{`Welcome ${
+          <h1 className="font-display font-bold text-3xl text-slate-900 xl:px-24 px-8">{`Welcome ${
             name.charAt(0).toUpperCase() + name.slice(1)
           } to ApnaKart`}</h1>
-          <p className="font-display text-lg text-slate-700 sm:px-24 px-8">
+          <p className="font-display text-lg text-slate-700 xl:px-24 px-8">
             Explore to find all the Latest and Classical Products on your Screen
           </p>
         </div>

@@ -53,15 +53,7 @@ const ProductDetail = () => {
             setMainImg={setMainImg}
             image={image}
           />
-          <ProductContent
-            name={name}
-            price={price}
-            description={description}
-            stars={stars}
-            reviews={reviews}
-            stock={stock}
-            colors={colors}
-          />
+          <ProductContent product={product} />
         </div>
       )}
     </>

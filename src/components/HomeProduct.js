@@ -30,11 +30,11 @@ const HomeProduct = ({ title, data }) => {
   return (
     <>
       <div className=" w-full py-4 bg-white">
-        <h1 className="font-display font-bold text-2xl text-slate-900 sm:px-24 px-8">
+        <h1 className="font-display font-bold text-2xl text-slate-900 xl:px-24 px-8">
           {title}
         </h1>
 
-        <div className=" w-full flex-col flex flex-wrap sm:flex-row sm:justify-between  item-center py-4 sm:px-24 px-8  ">
+        <div className=" w-full flex-col flex flex-wrap sm:flex-row sm:justify-between  item-center py-4 xl:px-24 px-8  ">
           {data === "mobile"
             ? mobile.map((data) => (
                 <ProductCard
