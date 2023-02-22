@@ -20,17 +20,15 @@ const Colors = () => {
   console.log("filtercolors", filtercolors);
   return (
     <>
-      <div className=" font-display bg-white flex flex-col w-full py-4 px-2 space-y-2 border-slate-200 border-[1px] rounded-lg">
+      <div className=" font-display bg-white flex flex-col w-full pt-4 px-4 space-y-2 border-slate-200 border-[1px] rounded-lg">
         <h1 className="font-semibold text-xl text-slate-700">Colors</h1>
 
-        <div className="flex flex-wrap md:space-x-4 space-x-2 space-y-2 items-center">
-          <h1 className="-mx-2"></h1>
-          {/* <h1 className="w-6 h-6 flex items-center justify-center">All</h1> */}
+        <div className="flex flex-wrap md:space-x-4 space-x-2 space-y-0 items-center">
           <button
             className={
               col === "all"
-                ? "w-6 h-6 rounded-md bg-slate-700 flex items-center justify-center text-white"
-                : "w-6 h-6 rounded-md border-slate-200 border-[1px] text-slate-700"
+                ? "w-8 h-8 rounded-md bg-slate-700 flex items-center justify-center text-white"
+                : "w-8 h-8 rounded-md border-slate-200 border-[1px] text-slate-700"
             }
             onClick={() => {
               setCol("all");
@@ -46,8 +44,8 @@ const Colors = () => {
               style={{ backgroundColor: color }}
               className={
                 col === color
-                  ? "w-6 h-6 rounded-md  flex items-center justify-center"
-                  : "w-6 h-6 rounded-md"
+                  ? "w-8 h-8 rounded-md  flex items-center justify-center"
+                  : "w-8 h-8 rounded-md"
               }
               onClick={() => {
                 filterType("color", color);

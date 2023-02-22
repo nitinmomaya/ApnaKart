@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 import { DELIVERY_CHARGES, RANDOM_ADDRESS } from "../../contant";
 import { useCartContext } from "../context/cartContext";
 
 import Button from "../UI/Button";
 import CartItem from "../UI/CartItem";
 import PriceHelper from "../utils/PriceHelper";
+import Empty from "./Error/Empty";
 
 const Cart = () => {
   const { cart, totalPrice } = useCartContext();
@@ -24,8 +26,11 @@ const Cart = () => {
 
           <div className="flex flex-col  font-display space-y-4">
             {cart.length === 0 ? (
-              <div className="flex justify-center items-center">
-                <h1>NO ITEMS IN CART</h1>
+              <div className="flex flex-col space-y-8 justify-center items-center">
+                <Empty />
+                <Link to="/products">
+                  <Button name={"Continue Shopping"} />
+                </Link>
               </div>
             ) : (
               cart.map((item) => {

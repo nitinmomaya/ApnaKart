@@ -12,6 +12,7 @@ const About = lazy(() => import("./About"));
 const Home = lazy(() => import("./Home"));
 const ProductDetail = lazy(() => import("./ProductDetail"));
 const Cart = lazy(() => import("./Cart"));
+const ErrorPage = lazy(() => import("./Error/ErrorPage"));
 
 //<---Creating Routing Configuration--->
 import { createBrowserRouter, Outlet } from "react-router-dom";
@@ -33,6 +34,11 @@ const App = () => {
 export const appRouter = createBrowserRouter([
   {
     path: "/",
+    errorElement: (
+      <Suspense>
+        <ErrorPage />
+      </Suspense>
+    ),
     element: (
       <ProtectedRoute>
         <App />
