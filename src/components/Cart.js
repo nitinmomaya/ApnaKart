@@ -1,4 +1,4 @@
-import { DELIVERY_CHARGES } from "../../contant";
+import { DELIVERY_CHARGES, RANDOM_ADDRESS } from "../../contant";
 import { useCartContext } from "../context/cartContext";
 
 import Button from "../UI/Button";
@@ -35,7 +35,7 @@ const Cart = () => {
           </div>
         </div>
 
-        <div className="lg:w-1/3  w-full p-4 bg-white font-display border-[1px] rounded-lg border-slate-200  h-max   ">
+        <div className="lg:w-1/3  w-full p-4 bg-white font-display border-[1px] rounded-lg border-slate-200  h-max mt-24   ">
           <p className="text-slate-500 font-medium text-base ">
             Delivery Address
           </p>
@@ -43,9 +43,7 @@ const Cart = () => {
             <h1 className="text-slate-700 text-xl font-semibold">
               Nitin Momaya
             </h1>
-            <p className="text-slate-700 text-base ">
-              ABC Apartments, W-2, 202, Greenfield, Bangalore, Karnataka, 560067
-            </p>
+            <p className="text-slate-700 text-base ">{RANDOM_ADDRESS}</p>
           </div>
 
           <p className="text-slate-500 font-medium text-base pt-2 ">
@@ -66,17 +64,22 @@ const Cart = () => {
               </p>
             </div>
             <div className="flex w-full justify-between">
-              <h1 className="text-slate-700 text-base ">Taxes</h1>
+              <div className="flex w-full md:flex-row flex-col">
+                <h1 className="text-slate-700 text-base  ">
+                  Taxes
+                  <span className=" text-sm text-slate-500">
+                    {"(18% GST included)"}
+                  </span>
+                </h1>
+              </div>
               <p className="text-slate-700 text-base font-semibold">
                 <PriceHelper price={TAXES} />
               </p>
             </div>
 
-            <div className="flex w-full justify-between">
-              <h1 className="text-slate-700 text-base font-bold ">
-                Grand Total
-              </h1>
-              <p className="text-slate-700 text-base font-bold">
+            <div className="flex w-full pt-4 justify-between">
+              <h1 className="text-slate-700 text-xl font-bold ">Grand Total</h1>
+              <p className="text-slate-700 text-xl font-bold">
                 <PriceHelper price={totalPrice + DELIVERY_CHARGES + TAXES} />
               </p>
             </div>

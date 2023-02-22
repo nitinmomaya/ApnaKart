@@ -2,11 +2,12 @@ import { useFormik } from "formik";
 import img from "../assest/Signup-Image.png";
 import Input from "../UI/Input";
 import * as Yup from "yup";
-import { useUserAuth } from "../context/UserAuth";
+import { auth, useUserAuth } from "../context/UserAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import GoogleSignIn from "../UI/GoogleSignin";
 import Button from "../UI/Button";
+import { updateProfile } from "firebase/auth";
 
 const validationSchema = Yup.object({
   name: Yup.string().min(2).max(25).required("Please Enter Your Name"),
@@ -34,16 +35,19 @@ const Signup = ({ setIsLogin, isLogin }) => {
       initialValues,
       validationSchema,
       onSubmit: (values, action) => {
-        handleSignup(values.email, values.password);
+        handleSignup(values.email, values.password, values.name);
 
         action.resetForm();
       },
     });
 
-  const handleSignup = async (email, password) => {
+  const handleSignup = async (email, password, name) => {
     setError("");
     try {
       await signup(email, password);
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
       navigate("/");
     } catch (err) {
       setError(err.message);

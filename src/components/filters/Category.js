@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useFilterProductContext } from "../../context/filterProductContext";
 import { useProductContext } from "../../context/productContext";
 const Category = () => {
   const { filterType } = useFilterProductContext();
   const { products } = useProductContext();
+
   //getting all the category names
   const category = products.map((comp) => comp.category);
 
@@ -24,7 +26,7 @@ const Category = () => {
               onClick={() => {
                 filterType("category", "all");
               }}
-              className="py-3 px-4  cursor-pointer  hover:bg-slate-50 "
+              className={"py-3 px-4  cursor-pointer  hover:bg-slate-50 "}
             >
               Show All Products
             </div>
@@ -35,7 +37,7 @@ const Category = () => {
                   const value = cat;
                   filterType("category", value);
                 }}
-                className="py-3 px-4  cursor-pointer  hover:bg-slate-50 "
+                className={"py-3 px-4  cursor-pointer  hover:bg-slate-50 "}
               >
                 {cat.charAt(0).toUpperCase() + cat.slice(1)}
               </div>

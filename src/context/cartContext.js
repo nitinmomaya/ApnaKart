@@ -6,7 +6,7 @@ const CartContext = createContext();
 const getCartData = () => {
   let cartData = localStorage.getItem("cartItem");
   console.log("cartData", cartData);
-  if (cartData === []) {
+  if (cartData === null) {
     return [];
   } else {
     return JSON.parse(cartData);
@@ -19,7 +19,6 @@ const initialState = {
   cart: getCartData(),
   totalItem: "",
   totalPrice: "",
-  shippingFee: 70000,
 };
 
 const CartProvider = ({ children }) => {
@@ -49,7 +48,7 @@ const CartProvider = ({ children }) => {
   useEffect(() => {
     dispatch({ type: "CART_TOTAL_PRICE" });
     localStorage.setItem("cartItem", JSON.stringify(state.cart));
-  });
+  }, [state.cart]);
 
   return (
     <CartContext.Provider

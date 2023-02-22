@@ -50,7 +50,7 @@ const ProductContent = ({ product }) => {
             {name ? name.charAt(0).toUpperCase() + name.slice(1) : name}
           </h1>
           <div className="flex sm:justify-between sm:flex-row items-center space-x-4">
-            <div className="flex px-2 py-2 space-x-1 bg-green-600 rounded-md  items-center">
+            <div className="flex px-2 py-2 space-x-1 bg-green-700 rounded-md  items-center">
               <FiStar className="w-5 h-5 text-white fill-white" />
               <p className="font-display font-semibold text-white">{stars}</p>
             </div>

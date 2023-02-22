@@ -67,10 +67,10 @@ const CartItem = ({
                 setIncrease={() => setIncrease(id)}
               />
               <button
-                className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
+                className=" flex  p-2 border-slate-200 border-[1px] rounded-md   hover:border-slate-400"
                 onClick={() => removeItem(id)}
               >
-                <FiTrash className="w-6 h-6 text-red-500" />
+                <FiTrash className="w-6 h-6 text-red-500 hover:text-red-700" />
               </button>
             </div>
           </div>

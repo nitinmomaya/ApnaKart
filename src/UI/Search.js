@@ -27,7 +27,7 @@ const Search = () => {
           />
         </div>
         <button
-          className="px-4  py-2 sm:h-full sm:my-0 my-4 mx-0 h-auto items-center justify-center flex  w-auto ml-3 bg-slate-700 text-white font-display font-semibold rounded-md "
+          className="px-4  py-2 sm:h-full sm:my-0 my-4 mx-0 h-auto items-center justify-center flex  w-auto ml-3 bg-slate-700 hover:bg-slate-500 text-white font-display font-semibold rounded-md "
           onClick={() => {
             filterType("search", value);
             setValue("");

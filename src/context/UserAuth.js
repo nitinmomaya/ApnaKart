@@ -34,12 +34,14 @@ export function UserAuthContextProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
+
       setUser(currentUser);
     });
     return () => {
-      unsubscribe();
+      unsubscribe;
     };
-  }, []);
+  }, [auth]);
+
   return (
     <userAuthContext.Provider
       value={{ user, login, signup, logout, googleSignIn }}

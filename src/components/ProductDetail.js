@@ -41,7 +41,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     getProduct(`${API_URL}?id=${id}`);
-  }, []);
+  }, [ProductImage]);
   return (
     <>
       {isLoading ? (

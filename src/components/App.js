@@ -1,13 +1,17 @@
 import Login from "./Login";
 import Signup from "./Signup";
 import ProtectedRoute from "./ProtectedRoute";
-import About from "./About";
+
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import Home from "./Home";
-import ProductDetail from "./ProductDetail";
-import Cart from "./Cart";
-import ProductLists from "./ProductLists";
+
+//Lazy Load components for optimization
+import { lazy, Suspense } from "react";
+const ProductLists = lazy(() => import("./ProductLists"));
+const About = lazy(() => import("./About"));
+const Home = lazy(() => import("./Home"));
+const ProductDetail = lazy(() => import("./ProductDetail"));
+const Cart = lazy(() => import("./Cart"));
 
 //<---Creating Routing Configuration--->
 import { createBrowserRouter, Outlet } from "react-router-dom";
@@ -37,25 +41,45 @@ export const appRouter = createBrowserRouter([
     children: [
       {
         path: "about",
-        element: <About />,
+        element: (
+          <Suspense>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <Suspense>
+            <Home />
+          </Suspense>
+        ),
       },
 
       {
         path: "/product/:id",
-        element: <ProductDetail />,
+        element: (
+          <Suspense>
+            <ProductDetail />
+          </Suspense>
+        ),
       },
 
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <Suspense>
+            <Cart />
+          </Suspense>
+        ),
       },
       {
         path: "/products",
-        element: <ProductLists />,
+        element: (
+          <Suspense>
+            <ProductLists />
+          </Suspense>
+        ),
       },
     ],
   },

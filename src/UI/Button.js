@@ -3,7 +3,7 @@ const Button = ({ type, name, handle }) => {
     <>
       <button
         type={type}
-        className="w-full bg-slate-700 text-gray-50 font-display font-semibold px-6 py-3 rounded"
+        className="w-full bg-slate-700 hover:bg-slate-500 text-gray-50 font-display font-semibold px-6 py-3 rounded"
         onClick={handle}
       >
         {name}

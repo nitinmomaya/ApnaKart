@@ -15,6 +15,9 @@ import Price from "./filters/Price";
 const ProductLists = () => {
   const { filterProduct, listView, setGridView, setListView, clearFilter } =
     useFilterProductContext();
+
+  const [isGrid, setIsGrid] = useState(false);
+  const [isList, setIsList] = useState(true);
   console.log("filter", filterProduct, "LIST", listView);
   //to load page from top
   useEffect(() => {
@@ -44,16 +47,44 @@ const ProductLists = () => {
             {/* Change View Section */}
             <div className="pl-8 justify-end flex  items-center align-top  space-x-4">
               <button
-                className=" flex  p-2  border-slate-200 border-[1px] rounded-md  "
-                onClick={setGridView}
+                className={
+                  isGrid
+                    ? " flex  p-2  bg-slate-700  border-[1px] rounded-md  "
+                    : " flex  p-2  border-slate-200 border-[1px] rounded-md  "
+                }
+                onClick={() => {
+                  setGridView();
+                  setIsGrid(true);
+                  setIsList(false);
+                }}
               >
-                <FiGrid className="sm:w-6 sm:h-6 w-4 h-4 text-slate-700" />
+                <FiGrid
+                  className={
+                    isGrid
+                      ? "sm:w-6 sm:h-6 w-4 h-4 text-white"
+                      : "sm:w-6 sm:h-6 w-4 h-4 text-slate-700"
+                  }
+                />
               </button>
               <button
-                className=" flex  p-2 border-slate-200 border-[1px] rounded-md  "
-                onClick={setListView}
+                className={
+                  isList
+                    ? " flex  p-2  bg-slate-700 text-white border-[1px] rounded-md  "
+                    : " flex  p-2  border-slate-200 border-[1px] rounded-md  "
+                }
+                onClick={() => {
+                  setListView();
+                  setIsList(true);
+                  setIsGrid(false);
+                }}
               >
-                <FiAlignJustify className="sm:w-6 sm:h-6 w-4 h-4 text-slate-700" />
+                <FiAlignJustify
+                  className={
+                    isList
+                      ? "sm:w-6 sm:h-6 w-4 h-4 text-white"
+                      : "sm:w-6 sm:h-6 w-4 h-4 text-slate-700"
+                  }
+                />
               </button>
             </div>
             {/* Change View End */}
