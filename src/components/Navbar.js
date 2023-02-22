@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { FiAlignJustify, FiX } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
+import { useCartContext } from "../context/cartContext";
 import { useUserAuth } from "../context/UserAuth";
 
 const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
   const { user, logout } = useUserAuth();
   const navigate = useNavigate();
+  const { cart } = useCartContext();
 
   const handleLogout = async () => {
     try {
@@ -51,7 +53,7 @@ const Navbar = () => {
               <div className=" flex justify-center items-center font-display text-gray-500 font-semibold hover:text-slate-700">
                 <h1 className="px-2">Cart</h1>
                 <p className="bg-slate-500 hover:bg-slate-700 rounded text-slate-50 p-2 py-1">
-                  0
+                  {cart ? cart.length : "0"}
                 </p>
               </div>
             </Link>

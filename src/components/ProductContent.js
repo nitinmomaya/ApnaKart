@@ -4,6 +4,7 @@ import PriceHelper from "../utils/PriceHelper";
 import { useState } from "react";
 
 import ProductQuantity from "./ProductQuantity";
+import { useCartContext } from "../context/cartContext";
 
 const ProductContent = ({ product }) => {
   const {
@@ -20,7 +21,23 @@ const ProductContent = ({ product }) => {
 
   console.log("CONT COLOR", colors, "PROD CONT", product);
 
+  const { cart } = useCartContext();
+
   const [col, setCol] = useState(colors[0]);
+
+  const newId = id + col;
+
+  const [quantity, setQuantity] = useState(1);
+
+  const handleIncrease = () => {
+    quantity < stock ? setQuantity(quantity + 1) : setQuantity(stock);
+  };
+
+  const handleDecrease = () => {
+    quantity <= 1 ? setQuantity(1) : setQuantity(quantity - 1);
+  };
+
+  console.log("QUANTITY OF STOCK", quantity);
 
   return (
     <>
@@ -93,7 +110,10 @@ const ProductContent = ({ product }) => {
             colors={col}
             stock={stock}
             product={product}
+            quantity={quantity}
             show={true}
+            setDecrease={handleDecrease}
+            setIncrease={handleIncrease}
           />
         </div>
       </div>

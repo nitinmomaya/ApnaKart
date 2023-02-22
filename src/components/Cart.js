@@ -1,32 +1,41 @@
+import { DELIVERY_CHARGES } from "../../contant";
 import { useCartContext } from "../context/cartContext";
 
 import Button from "../UI/Button";
 import CartItem from "../UI/CartItem";
+import PriceHelper from "../utils/PriceHelper";
 
 const Cart = () => {
-  const { cart } = useCartContext();
+  const { cart, totalPrice } = useCartContext();
+  let TAXES = (totalPrice * 18) / 100;
 
   return (
     <>
-      <div className="w-full bg-white mb-16 flex pt-28  xl:px-24 px-8 justify-between gap-10 lg:flex-row flex-col relative">
-        <div className="lg:w-[70%] w-full ">
+      <div className="w-full bg-white mb-10 flex pt-28  xl:px-24 px-8 justify-between gap-10 lg:flex-row flex-col ">
+        <div className="lg:w-[70%] w-full h-full bg-white ">
           <div className=" pb-8 space-y-2 ">
             <h1 className="font-display font-bold text-3xl text-slate-900 ">
               Cart Details
             </h1>
             <p className="font-display text-lg text-slate-700 ">
-              {` You have ${cart.length} items in the Cart`}
+              {` You have ${cart.length ? cart.length : 0} items in the Cart`}
             </p>
           </div>
 
           <div className="flex flex-col  font-display space-y-4">
-            {cart.map((item) => {
-              return <CartItem key={item.id} {...item} />;
-            })}
+            {cart.length === 0 ? (
+              <div className="flex justify-center items-center">
+                <h1>NO ITEMS IN CART</h1>
+              </div>
+            ) : (
+              cart.map((item) => {
+                return <CartItem key={item.id} {...item} />;
+              })
+            )}
           </div>
         </div>
 
-        <div className="lg:w-1/4 xl:m-[98px] w-full p-4 bg-white font-display border-[1px] rounded-lg border-slate-200  h-max lg:fixed right-0 lg:mr-8 lg:mt-28 ">
+        <div className="lg:w-1/3  w-full p-4 bg-white font-display border-[1px] rounded-lg border-slate-200  h-max   ">
           <p className="text-slate-500 font-medium text-base ">
             Delivery Address
           </p>
@@ -46,22 +55,30 @@ const Cart = () => {
           <div className="flex w-full flex-col space-y-2 mt-2 mb-8">
             <div className="flex w-full justify-between">
               <h1 className="text-slate-700 text-base ">Item Bill</h1>
-              <p className="text-slate-700 text-base font-semibold">₹9,999</p>
+              <p className="text-slate-700 text-base font-semibold">
+                <PriceHelper price={totalPrice} />
+              </p>
             </div>
             <div className="flex w-full justify-between">
               <h1 className="text-slate-700 text-base ">Delivery Charges</h1>
-              <p className="text-slate-700 text-base font-semibold">₹9,999</p>
+              <p className="text-slate-700 text-base font-semibold">
+                <PriceHelper price={DELIVERY_CHARGES} />
+              </p>
             </div>
             <div className="flex w-full justify-between">
               <h1 className="text-slate-700 text-base ">Taxes</h1>
-              <p className="text-slate-700 text-base font-semibold">₹9,999</p>
+              <p className="text-slate-700 text-base font-semibold">
+                <PriceHelper price={TAXES} />
+              </p>
             </div>
 
             <div className="flex w-full justify-between">
               <h1 className="text-slate-700 text-base font-bold ">
                 Grand Total
               </h1>
-              <p className="text-slate-700 text-base font-bold">₹19,999</p>
+              <p className="text-slate-700 text-base font-bold">
+                <PriceHelper price={totalPrice + DELIVERY_CHARGES + TAXES} />
+              </p>
             </div>
           </div>
           <Button name={"Order Now"} />

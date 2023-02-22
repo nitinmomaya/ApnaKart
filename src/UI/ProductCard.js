@@ -9,7 +9,7 @@ const ProductCard = ({ productName = "", companyName, price, img, id }) => {
           <img
             className="lg:w-[400px] lg:h-[300px] w-full rounded-t-lg"
             src={img}
-            alt="Mobile Phone"
+            alt=""
           />
 
           <div className="flex flex-col  px-4 py-4 space-y-1">

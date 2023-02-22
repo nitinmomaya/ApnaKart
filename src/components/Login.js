@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../assest/Signup-Image.png";
 import { useUserAuth } from "../context/UserAuth";
@@ -15,7 +15,7 @@ import Input from "../UI/Input";
 const Login = () => {
   const [error, setError] = useState("");
 
-  const { user, login } = useUserAuth();
+  const { login } = useUserAuth();
   const navigate = useNavigate();
 
   const initialValues = {
@@ -40,6 +40,7 @@ const Login = () => {
         action.resetForm();
       },
     });
+
   return (
     <>
       <div className="  w-full  flex md:flex-row flex-col  md:justify-center h-screen space-y-4">
