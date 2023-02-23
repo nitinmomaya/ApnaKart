@@ -7,7 +7,6 @@ import Dropdown from "../UI/Dropdown";
 import ProductCard from "../UI/ProductCard";
 import ProductList from "../UI/ProductList";
 import Search from "../UI/Search";
-
 import Error from "./Error/Error";
 import Category from "./filters/Category";
 import Colors from "./filters/Colors";

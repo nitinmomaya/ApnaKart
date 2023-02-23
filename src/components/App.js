@@ -1,10 +1,5 @@
 import Login from "./Login";
-import Signup from "./Signup";
 import ProtectedRoute from "./ProtectedRoute";
-
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-
 //Lazy Load components for optimization
 import { lazy, Suspense } from "react";
 const ProductLists = lazy(() => import("./ProductLists"));
@@ -13,6 +8,9 @@ const Home = lazy(() => import("./Home"));
 const ProductDetail = lazy(() => import("./ProductDetail"));
 const Cart = lazy(() => import("./Cart"));
 const ErrorPage = lazy(() => import("./Error/ErrorPage"));
+const Navbar = lazy(() => import("./Navbar"));
+const Footer = lazy(() => import("./Footer"));
+const Signup = lazy(() => import("./Signup"));
 
 //<---Creating Routing Configuration--->
 import { createBrowserRouter, Outlet } from "react-router-dom";
