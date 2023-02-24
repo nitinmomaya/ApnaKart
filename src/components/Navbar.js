@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="flex flex-col  w-full fixed  justify-end z-50">
+      <div className="flex flex-col  w-full fixed  justify-end z-20">
         <div className="flex justify-between  xl:px-24 px-8 py-4   font-display font items-center border-b-slate-200 border-b bg-white w-full ">
           <Link to="/">
             <h1 className="font-display font-semibold text-2xl text-slate-700">
