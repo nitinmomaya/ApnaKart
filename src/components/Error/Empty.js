@@ -3,7 +3,7 @@ import img from "../../assest/Empty.png";
 const Empty = () => {
   return (
     <>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center font-display">
         <img src={img} className="w-60 h-60" alt="" />
         <div className="flex justify-center flex-col items-center space-y-2">
           <h1 className="text-3xl text-slate-700 font-semibold">

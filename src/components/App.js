@@ -93,7 +93,11 @@ export const appRouter = createBrowserRouter([
   },
   {
     path: "/signup",
-    element: <Signup />,
+    element: (
+      <Suspense>
+        <Signup />
+      </Suspense>
+    ),
   },
 ]);
 export default App;

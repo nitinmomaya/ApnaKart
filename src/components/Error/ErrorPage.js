@@ -9,7 +9,7 @@ const ErrorPage = () => {
         <img src={img} className="w-80 h-max" alt="" />
         <div className="flex justify-center flex-col items-center space-y-2">
           <h1 className="text-3xl text-slate-700 font-semibold">
-            No Product Found
+            No Page Found
           </h1>
           <p className="text-slate-700 text-lg">
             Please Search with a different Value

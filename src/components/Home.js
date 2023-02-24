@@ -1,10 +1,11 @@
+import { lazy, Suspense } from "react";
 import { useProductContext } from "../context/productContext";
 import { useUserAuth } from "../context/UserAuth";
-import HomeProduct from "./HomeProduct";
+
+const HomeProduct = lazy(() => import("./HomeProduct"));
 
 const Home = () => {
   const { user } = useUserAuth();
-  const { isLoading } = useProductContext();
 
   const name = user.displayName ? user.displayName : "";
 
@@ -19,9 +20,15 @@ const Home = () => {
         </p>
       </div>
 
-      <HomeProduct title={"Latest Mobile"} data={"mobile"} />
-      <HomeProduct title={"Latest Laptop"} data={"laptop"} />
-      <HomeProduct title={"Latest Watches"} data={"watch"} />
+      <Suspense>
+        <HomeProduct title={"Latest Mobile"} data={"mobile"} />
+      </Suspense>
+      <Suspense>
+        <HomeProduct title={"Latest Laptop"} data={"laptop"} />
+      </Suspense>
+      <Suspense>
+        <HomeProduct title={"Latest Watches"} data={"watch"} />
+      </Suspense>
     </>
   );
 };

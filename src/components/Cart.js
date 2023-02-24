@@ -11,14 +11,19 @@ import PriceHelper from "../utils/PriceHelper";
 import Empty from "./Error/Empty";
 
 const Cart = () => {
-  const { cart, totalPrice } = useCartContext();
+  const { cart, totalPrice, clearCart } = useCartContext();
   let TAXES = (totalPrice * 18) / 100;
   let GRAND_TOTAL = totalPrice + DELIVERY_CHARGES + TAXES;
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+    clearCart();
+  };
 
   return (
     <>
@@ -122,7 +127,10 @@ const Cart = () => {
 
               <div className="w-full flex justify-end space-x-4 py-4 border-t bg-slate-50 border-t-slate-200 pr-4 rounded-br-lg rounded-bl-lg">
                 <Link to="/">
-                  <button className="bg-slate-700 font-semibold hover:bg-slate-500 text-white px-4 py-2 rounded-md">
+                  <button
+                    onClick={() => clearCart()}
+                    className="bg-slate-700 font-semibold hover:bg-slate-500 text-white px-4 py-2 rounded-md"
+                  >
                     Go to Home
                   </button>
                 </Link>
