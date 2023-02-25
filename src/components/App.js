@@ -1,15 +1,19 @@
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
+// import Home from "../components/Home";
+// import Navbar from "../components/Navbar";
+// import Footer from "../components/Footer";
 //Lazy Load components for optimization
 import { lazy, Suspense } from "react";
+const Home = lazy(() => import("./Home"));
+const Navbar = lazy(() => import("./Navbar"));
+const Footer = lazy(() => import("./Footer"));
 const ProductLists = lazy(() => import("./ProductLists"));
 const About = lazy(() => import("./About"));
-const Home = lazy(() => import("./Home"));
 const ProductDetail = lazy(() => import("./ProductDetail"));
 const Cart = lazy(() => import("./Cart"));
 const ErrorPage = lazy(() => import("./Error/ErrorPage"));
-const Navbar = lazy(() => import("./Navbar"));
-const Footer = lazy(() => import("./Footer"));
+
 const Signup = lazy(() => import("./Signup"));
 
 //<---Creating Routing Configuration--->
@@ -19,11 +23,15 @@ const App = () => {
   return (
     <>
       <div className="w-full h-full flex flex-col min-h-screen">
-        <Navbar />
+        <Suspense>
+          <Navbar />
+        </Suspense>
 
         <Outlet />
 
-        <Footer />
+        <Suspense>
+          <Footer />
+        </Suspense>
       </div>
     </>
   );
@@ -55,6 +63,7 @@ export const appRouter = createBrowserRouter([
         path: "/",
         element: (
           <Suspense>
+            {" "}
             <Home />
           </Suspense>
         ),

@@ -12,6 +12,7 @@ const validationSchema = Yup.object({
 });
 
 import Input from "../UI/Input";
+
 const Login = () => {
   const [error, setError] = useState("");
 
@@ -28,18 +29,21 @@ const Login = () => {
       initialValues,
       validationSchema,
 
-      onSubmit: async (values, action) => {
-        console.log("values:", values);
-        setError("");
-        try {
-          await login(values.email, values.password);
-          navigate("/");
-        } catch (err) {
-          setError(err.message);
-        }
+      onSubmit: (values, action) => {
+        handleLogin(values.email, values.password);
         action.resetForm();
       },
     });
+
+  const handleLogin = async (email, password) => {
+    setError("");
+    try {
+      await login(email, password);
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   return (
     <>

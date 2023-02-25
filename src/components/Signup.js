@@ -7,7 +7,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import GoogleSignIn from "../UI/GoogleSignin";
 import Button from "../UI/Button";
-import { updateProfile } from "firebase/auth";
 
 const validationSchema = Yup.object({
   name: Yup.string().min(2).max(25).required("Please Enter Your Name"),
@@ -17,7 +16,7 @@ const validationSchema = Yup.object({
     .required("Please Re-Enter your Password")
     .oneOf([Yup.ref("password"), null], "Password must Match"),
 });
-const Signup = ({ setIsLogin, isLogin }) => {
+const Signup = () => {
   const [error, setError] = useState("");
 
   const { signup } = useUserAuth();
@@ -48,7 +47,7 @@ const Signup = ({ setIsLogin, isLogin }) => {
       updateProfile(auth.currentUser, {
         displayName: name,
       });
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       setError(err.message);
     }
