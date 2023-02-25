@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import GoogleSignIn from "../UI/GoogleSignin";
 import Button from "../UI/Button";
+import { updateProfile } from "firebase/auth";
 
 const validationSchema = Yup.object({
   name: Yup.string().min(2).max(25).required("Please Enter Your Name"),
