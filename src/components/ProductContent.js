@@ -4,7 +4,6 @@ import PriceHelper from "../utils/PriceHelper";
 import { useState } from "react";
 
 import ProductQuantity from "./ProductQuantity";
-import { useCartContext } from "../context/cartContext";
 
 const ProductContent = ({ product }) => {
   const {
@@ -21,11 +20,7 @@ const ProductContent = ({ product }) => {
 
   console.log("CONT COLOR", colors, "PROD CONT", product);
 
-  const { cart } = useCartContext();
-
   const [col, setCol] = useState(colors[0]);
-
-  const newId = id + col;
 
   const [quantity, setQuantity] = useState(1);
 
@@ -47,7 +42,7 @@ const ProductContent = ({ product }) => {
         </h1>
         <div className="flex sm:justify-between sm:flex-row flex-col sm:items-center">
           <h1 className=" font-display font-semibold text-2xl text-gray-700 pb-2">
-            {name ? name.charAt(0).toUpperCase() + name.slice(1) : name}
+            {name?.charAt(0)?.toUpperCase() + name?.slice(1)}
           </h1>
           <div className="flex sm:justify-between sm:flex-row items-center space-x-4">
             <div className="flex px-2 py-2 space-x-1 bg-green-700 rounded-md  items-center">

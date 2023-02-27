@@ -1,21 +1,25 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { FiAlignJustify, FiGrid, FiSearch } from "react-icons/fi";
 import { useFilterProductContext } from "../context/filterProductContext";
 import Button from "../UI/Button";
-
+import { useProductContext } from "../context/productContext";
 import Dropdown from "../UI/Dropdown";
 import ProductCard from "../UI/ProductCard";
 import ProductList from "../UI/ProductList";
 import Search from "../UI/Search";
-import Error from "./Error/Error";
+const Error = lazy(() => import("./Error/Error"));
+const ProductCard = lazy(() => import("../UI/ProductCard"));
 import Category from "./filters/Category";
 import Colors from "./filters/Colors";
 import Company from "./filters/Company";
 import Price from "./filters/Price";
+import ProductShimmer from "./shimmer/ProductShimmer";
 
 const ProductLists = () => {
   const { filterProduct, listView, setGridView, setListView, clearFilter } =
     useFilterProductContext();
+
+  const { isLoading } = useProductContext();
 
   const [isGrid, setIsGrid] = useState(false);
   const [isList, setIsList] = useState(true);
@@ -27,138 +31,146 @@ const ProductLists = () => {
 
   return (
     <>
-      <div className="pt-28 flex flex-col  xl:px-24 px-8 ">
-        {/* header content */}
-        <div className="flex lg:flex-row flex-col justify-between items-center  space-y-4 w-full">
-          <div className="lg:w-1/2 w-full space-y-2">
-            <h1 className="font-display font-bold text-3xl text-slate-900 ">
-              Find all products at a single place
-            </h1>
-            <p className="font-display text-lg text-slate-700 ">
-              Explore products from different categories and filter products at
-              your wish
-            </p>
-          </div>
-          {/*SEARCH SECTION */}
-          <div className=" lg:w-1/2 w-full flex lg:justify-end justify-between sm:item-center font-display">
-            {/* SearchBar Start */}
-            <Search />
-            {/* SearchBar End */}
+      {isLoading ? (
+        <ProductShimmer />
+      ) : (
+        <div className="pt-28 flex flex-col  xl:px-24 px-8 ">
+          {/* header content */}
+          <div className="flex lg:flex-row flex-col justify-between items-center  space-y-4 w-full">
+            <div className="lg:w-1/2 w-full space-y-2">
+              <h1 className="font-display font-bold text-3xl text-slate-900 ">
+                Find all products at a single place
+              </h1>
+              <p className="font-display text-lg text-slate-700 ">
+                Explore products from different categories and filter products
+                at your wish
+              </p>
+            </div>
+            {/*SEARCH SECTION */}
+            <div className=" lg:w-1/2 w-full flex lg:justify-end justify-between sm:item-center font-display">
+              {/* SearchBar Start */}
+              <Search />
+              {/* SearchBar End */}
 
-            {/* Change View Section */}
-            <div className="pl-8 justify-end flex  items-center align-top  space-x-4">
-              <button
-                className={
-                  isGrid
-                    ? " flex  p-2  bg-slate-700  border-[1px] rounded-md  "
-                    : " flex  p-2  border-slate-200 border-[1px] rounded-md  "
-                }
-                onClick={() => {
-                  setGridView();
-                  setIsGrid(true);
-                  setIsList(false);
-                }}
-              >
-                <FiGrid
+              {/* Change View Section */}
+              <div className="pl-8 justify-end flex  items-center align-top  space-x-4">
+                <button
                   className={
                     isGrid
-                      ? "sm:w-6 sm:h-6 w-4 h-4 text-white"
-                      : "sm:w-6 sm:h-6 w-4 h-4 text-slate-700"
+                      ? " flex  p-2  bg-slate-700  border-[1px] rounded-md  "
+                      : " flex  p-2  border-slate-200 border-[1px] rounded-md  "
                   }
-                />
-              </button>
-              <button
-                className={
-                  isList
-                    ? " flex  p-2  bg-slate-700 text-white border-[1px] rounded-md  "
-                    : " flex  p-2  border-slate-200 border-[1px] rounded-md  "
-                }
-                onClick={() => {
-                  setListView();
-                  setIsList(true);
-                  setIsGrid(false);
-                }}
-              >
-                <FiAlignJustify
+                  onClick={() => {
+                    setGridView();
+                    setIsGrid(true);
+                    setIsList(false);
+                  }}
+                >
+                  <FiGrid
+                    className={
+                      isGrid
+                        ? "sm:w-6 sm:h-6 w-4 h-4 text-white"
+                        : "sm:w-6 sm:h-6 w-4 h-4 text-slate-700"
+                    }
+                  />
+                </button>
+                <button
                   className={
                     isList
-                      ? "sm:w-6 sm:h-6 w-4 h-4 text-white"
-                      : "sm:w-6 sm:h-6 w-4 h-4 text-slate-700"
+                      ? " flex  p-2  bg-slate-700 text-white border-[1px] rounded-md  "
+                      : " flex  p-2  border-slate-200 border-[1px] rounded-md  "
                   }
-                />
-              </button>
+                  onClick={() => {
+                    setListView();
+                    setIsList(true);
+                    setIsGrid(false);
+                  }}
+                >
+                  <FiAlignJustify
+                    className={
+                      isList
+                        ? "sm:w-6 sm:h-6 w-4 h-4 text-white"
+                        : "sm:w-6 sm:h-6 w-4 h-4 text-slate-700"
+                    }
+                  />
+                </button>
+              </div>
+              {/* Change View End */}
             </div>
-            {/* Change View End */}
           </div>
-        </div>
 
-        {/* 2nd row content */}
-        <div className="flex flex-col-reverse lg:flex-row lg:justify-between my-4  font-display">
-          {/* filter options */}
-          <div className=" flex lg:w-1/5 w-full flex-col   space-y-4 ">
-            <Category />
-            <Company />
-            <Colors />
-            <Price />
-            <Button name={"Clear Filter"} handle={clearFilter} />
-          </div>
-          {/* product display */}
-          <div className="flex flex-col lg:w-3/4 w-full   ">
-            {/* Header Content for Product */}
-            <div className="flex justify-between w-full my-2 md:items-center md:flex-row flex-col">
-              <h1 className="font-display font-bold text-2xl text-slate-900 w-3/4 ">
-                {filterProduct.length} Products Available
-              </h1>
-              <div className="lg:w-1/4 sm:w-1/2  w-full py-2">
-                <Dropdown
-                  name={"Sort By:"}
-                  options={[
-                    { name: " Show All", value: "all" },
-                    { name: "Price: High to Low", value: "highest" },
-                    { name: "Price: Low to High", value: "lowest" },
-                    { name: "Sort: A to Z", value: "lowest-A-Z" },
-                    { name: "Sort: Z to A", value: "highest-A-Z" },
-                  ]}
-                />
-              </div>
+          {/* 2nd row content */}
+          <div className="flex flex-col-reverse lg:flex-row lg:justify-between my-4  font-display">
+            {/* filter options */}
+            <div className=" flex lg:w-1/5 w-full flex-col   space-y-4 ">
+              <Category />
+              <Company />
+              <Colors />
+              <Price />
+              <Button name={"Clear Filter"} handle={clearFilter} />
             </div>
-            {/* Product List Component -name, -description */}
-            {filterProduct.length === 0 ? (
-              <div className=" flex justify-center items-center w-full h-full">
-                <Error />
+            {/* product display */}
+            <div className="flex flex-col lg:w-3/4 w-full   ">
+              {/* Header Content for Product */}
+              <div className="flex justify-between w-full my-2 md:items-center md:flex-row flex-col">
+                <h1 className="font-display font-bold text-2xl text-slate-900 w-3/4 ">
+                  {filterProduct.length} Products Available
+                </h1>
+                <div className="lg:w-1/4 sm:w-1/2  w-full py-2">
+                  <Dropdown
+                    name={"Sort By:"}
+                    options={[
+                      { name: " Show All", value: "all" },
+                      { name: "Price: High to Low", value: "highest" },
+                      { name: "Price: Low to High", value: "lowest" },
+                      { name: "Sort: A to Z", value: "lowest-A-Z" },
+                      { name: "Sort: Z to A", value: "highest-A-Z" },
+                    ]}
+                  />
+                </div>
               </div>
-            ) : (
-              <div className="w-full">
-                {listView ? (
-                  filterProduct.map((filter) => (
-                    <ProductList
-                      key={filter.id}
-                      productName={filter.name}
-                      price={filter.price}
-                      id={filter.id}
-                      description={filter.description}
-                      img={filter.image}
-                    />
-                  ))
-                ) : (
-                  <div className="flex flex-wrap justify-between">
-                    {filterProduct.map((filter) => (
-                      <ProductCard
-                        key={filter.id}
-                        productName={filter.name}
-                        companyName={filter.company}
-                        price={filter.price}
-                        img={filter.image}
-                        id={filter.id}
+              {/* Product List Component -name, -description */}
+              {filterProduct.length === 0 ? (
+                <div className=" flex justify-center items-center w-full h-full">
+                  <Suspense>
+                    <Error />
+                  </Suspense>
+                </div>
+              ) : (
+                <div className="w-full">
+                  {listView ? (
+                    filterProduct.map((filter) => (
+                      <ProductList
+                        key={filter?.id}
+                        productName={filter?.name}
+                        price={filter?.price}
+                        id={filter?.id}
+                        description={filter?.description}
+                        img={filter?.image}
                       />
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+                    ))
+                  ) : (
+                    <div className="flex flex-wrap justify-between">
+                      {filterProduct.map((filter) => (
+                        <Suspense>
+                          <ProductCard
+                            key={filter?.id}
+                            productName={filter?.name}
+                            companyName={filter?.company}
+                            price={filter?.price}
+                            img={filter?.image}
+                            id={filter?.id}
+                          />
+                        </Suspense>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

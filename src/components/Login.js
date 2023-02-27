@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../assest/Signup-Image.png";
+
 import { useUserAuth } from "../context/UserAuth";
 import GoogleSignIn from "../UI/GoogleSignin";
 import * as Yup from "yup";
@@ -49,7 +50,12 @@ const Login = () => {
     <>
       <div className="  w-full  flex md:flex-row flex-col  md:justify-center h-screen space-y-4">
         <div className="md:w-1/2 bg-slate-50 flex flex-col items-center justify-center h-screen py-8">
-          <img className="w-96 h-96 py-4 px-10" src={img} alt="" />
+          <img
+            loading="lazy"
+            className="w-96 h-96 py-4 px-10"
+            src={img}
+            alt=""
+          />
           <div className=" flex flex-col space-y-2 items-center px-10">
             <h1 className="font-display text-4xl font-bold text-slate-700 text-center">
               Welcome to ApnaKart

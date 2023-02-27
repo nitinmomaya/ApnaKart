@@ -7,6 +7,7 @@ const ProductCard = ({ productName = "", companyName, price, img, id }) => {
       <Link to={`/product/${id}`}>
         <div className="w-full  bg-white  rounded-lg border-slate-100 border-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 my-4">
           <img
+            loading="lazy"
             className="lg:w-[400px] lg:h-[300px] w-full rounded-t-lg"
             src={img}
             alt=""

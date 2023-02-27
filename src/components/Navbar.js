@@ -54,7 +54,7 @@ const Navbar = () => {
               <div className=" flex justify-center items-center font-display text-gray-500 font-semibold hover:text-slate-700">
                 <h1 className="px-2">Cart</h1>
                 <p className="bg-slate-700 hover:bg-slate-500 rounded text-slate-50 p-2 py-1">
-                  {cart ? cart.length : "0"}
+                  {cart?.length}
                 </p>
               </div>
             </Link>
@@ -117,7 +117,7 @@ const Navbar = () => {
               <div className=" flex justify-center items-center font-display text-gray-500 font-semibold hover:text-slate-700">
                 <h1 className=" pr-4">Cart</h1>
                 <p className="bg-slate-700 hover:bg-slate-500 rounded text-slate-50 p-2 py-1">
-                  {cart ? cart.length : "0"}
+                  {cart?.length}
                 </p>
               </div>
             </Link>

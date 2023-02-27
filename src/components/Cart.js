@@ -42,8 +42,9 @@ const Cart = () => {
                 Cart Details
               </h1>
               <p className="font-display text-lg text-slate-700 ">
-                {` You have ${cart.length ? cart.length : 0} items in the Cart`}
+                {` You have ${cart?.length} items in the Cart`}
               </p>
+              {/* ? cart.length : 0 */}
             </div>
 
             <div className="flex flex-col  font-display space-y-4">

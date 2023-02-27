@@ -8,6 +8,7 @@ const ProductList = ({ productName = "", price, img, id, description }) => {
       <Link to={`/product/${id}`}>
         <div className="flex w-full xl:flex-row  xl:space-x-8 md:justify-between xl:align-top item-center justify-center 2xl:space-y-4  lg:my-4 my-8 flex-col ">
           <img
+            loading="lazy"
             className="xl:w-80  xl:h-80 w-full rounded-md "
             src={img}
             alt=""

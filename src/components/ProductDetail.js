@@ -25,17 +25,13 @@ const ProductDetail = () => {
 
   const {
     id: alias,
-    name = "",
-    price,
-    description,
-    stars,
-    stock,
+
     colors,
-    reviews,
+
     image = [{ url: "" }],
   } = product;
 
-  const [mainImg, setMainImg] = useState(image[0].url);
+  const [mainImg, setMainImg] = useState(image[0]?.url);
   console.log("COLOR", colors);
   console.log("PRODUCTS", product);
 
