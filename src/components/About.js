@@ -10,7 +10,7 @@ const About = () => {
   return (
     <>
       <div className="w-auto flex items-center justify-center p-8 pt-28">
-        <img src={img} className="rounded-lg" alt="" />
+        <img rel="preload" as="image" src={img} className="rounded-lg" alt="" />
       </div>
       <Section
         title={"Who We Are?"}

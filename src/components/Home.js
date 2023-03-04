@@ -3,6 +3,7 @@ import { useUserAuth } from "../context/UserAuth";
 import { isLoading } from "../context/productContext";
 const HomeProduct = lazy(() => import("./HomeProduct"));
 import Shimmer from "../components/shimmer/Shimmer";
+
 const Home = () => {
   const { user } = useUserAuth();
 

@@ -1,5 +1,5 @@
 import { FiTrash } from "react-icons/fi";
-import ProductQuantity from "../components/ProductQuantity";
+import ProductQuantity from "../components/ProductDetails/ProductQuantity";
 import { useCartContext } from "../context/cartContext";
 import PriceHelper from "../utils/PriceHelper";
 

@@ -1,9 +1,8 @@
 import { FiStar, FiCheck } from "react-icons/fi";
 
-import PriceHelper from "../utils/PriceHelper";
-import { useState } from "react";
-
-import ProductQuantity from "./ProductQuantity";
+import PriceHelper from "../../utils/PriceHelper";
+import { lazy, Suspense, useState } from "react";
+const ProductQuantity = lazy(() => import("./ProductQuantity"));
 
 const ProductContent = ({ product }) => {
   const {
@@ -100,16 +99,18 @@ const ProductContent = ({ product }) => {
           </p>
         </div>
         <div className="w-full">
-          <ProductQuantity
-            id={id}
-            colors={col}
-            stock={stock}
-            product={product}
-            quantity={quantity}
-            show={true}
-            setDecrease={handleDecrease}
-            setIncrease={handleIncrease}
-          />
+          <Suspense>
+            <ProductQuantity
+              id={id}
+              colors={col}
+              stock={stock}
+              product={product}
+              quantity={quantity}
+              show={true}
+              setDecrease={handleDecrease}
+              setIncrease={handleIncrease}
+            />
+          </Suspense>
         </div>
       </div>
     </>

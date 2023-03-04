@@ -1,10 +1,10 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import ProductShimmer from "./shimmer/ProductShimmer";
+import ProductShimmer from "../shimmer/ProductShimmer";
 import { useParams } from "react-router-dom";
-import { API_URL } from "../../contant";
-import { useProductContext } from "../context/productContext";
+import { API_URL } from "../../../contant";
+import { useProductContext } from "../../context/productContext";
 
-import { useFilterProductContext } from "../context/filterProductContext";
+import { useFilterProductContext } from "../../context/filterProductContext";
 
 const ProductImage = lazy(() => import("./ProductImage"));
 const ProductContent = lazy(() => import("./ProductContent"));
@@ -53,7 +53,9 @@ const ProductDetail = () => {
               image={image}
             />
           </Suspense>
-          <ProductContent product={product} />
+          <Suspense>
+            <ProductContent product={product} />
+          </Suspense>
         </div>
       )}
     </>

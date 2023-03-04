@@ -8,16 +8,18 @@ import { lazy, Suspense } from "react";
 const Home = lazy(() => import("./Home"));
 const Navbar = lazy(() => import("./Navbar"));
 const Footer = lazy(() => import("./Footer"));
-const ProductLists = lazy(() => import("./ProductLists"));
+const ProductLists = lazy(() => import("./ProductList/ProductLists"));
 const About = lazy(() => import("./About"));
-const ProductDetail = lazy(() => import("./ProductDetail"));
-const Cart = lazy(() => import("./Cart"));
+const ProductDetail = lazy(() => import("./ProductDetails/ProductDetail"));
+const Cart = lazy(() => import("./Cart/Cart"));
 const ErrorPage = lazy(() => import("./Error/ErrorPage"));
 
 const Signup = lazy(() => import("./Signup"));
 
 //<---Creating Routing Configuration--->
 import { createBrowserRouter, Outlet } from "react-router-dom";
+import Shimmer from "./shimmer/Shimmer";
+import ProductShimmer from "./shimmer/ProductShimmer";
 
 const App = () => {
   return (
@@ -72,7 +74,7 @@ export const appRouter = createBrowserRouter([
       {
         path: "/product/:id",
         element: (
-          <Suspense>
+          <Suspense fallback={<ProductShimmer />}>
             <ProductDetail />
           </Suspense>
         ),

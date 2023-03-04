@@ -1,7 +1,7 @@
 import { BsHandbag } from "react-icons/bs";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useCartContext } from "../context/cartContext";
+import { useCartContext } from "../../context/cartContext";
 
 const ProductQuantity = ({
   id,

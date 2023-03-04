@@ -1,7 +1,8 @@
 import { useProductContext } from "../context/productContext";
-import ProductCard from "../UI/ProductCard";
-import Shimmer from "../components/shimmer/Shimmer";
 
+import Shimmer from "../components/shimmer/Shimmer";
+import { lazy, Suspense } from "react";
+const ProductCard = lazy(() => import("../UI/ProductCard"));
 const HomeProduct = ({ title, data }) => {
   const { isLoading, products } = useProductContext();
 
@@ -29,40 +30,46 @@ const HomeProduct = ({ title, data }) => {
           <div className=" w-full flex-col flex flex-wrap sm:flex-row sm:justify-between  item-center py-4 xl:px-24 px-8  ">
             {data === "mobile"
               ? mobile.map((data) => (
-                  <ProductCard
-                    key={data?.id}
-                    productName={data?.name}
-                    companyName={data?.company}
-                    price={data?.price}
-                    img={data?.image}
-                    id={data?.id}
-                  />
+                  <Suspense>
+                    <ProductCard
+                      key={data?.id}
+                      productName={data?.name}
+                      companyName={data?.company}
+                      price={data?.price}
+                      img={data?.image}
+                      id={data?.id}
+                    />
+                  </Suspense>
                 ))
               : null}
 
             {data === "laptop"
               ? laptop.map((data) => (
-                  <ProductCard
-                    key={data?.id}
-                    productName={data?.name}
-                    companyName={data?.company}
-                    price={data?.price}
-                    img={data?.image}
-                    id={data?.id}
-                  />
+                  <Suspense>
+                    <ProductCard
+                      key={data?.id}
+                      productName={data?.name}
+                      companyName={data?.company}
+                      price={data?.price}
+                      img={data?.image}
+                      id={data?.id}
+                    />
+                  </Suspense>
                 ))
               : null}
 
             {data === "watch"
               ? watch.map((data) => (
-                  <ProductCard
-                    key={data?.id}
-                    productName={data?.name}
-                    companyName={data?.company}
-                    price={data?.price}
-                    img={data?.image}
-                    id={data?.id}
-                  />
+                  <Suspense>
+                    <ProductCard
+                      key={data?.id}
+                      productName={data?.name}
+                      companyName={data?.company}
+                      price={data?.price}
+                      img={data?.image}
+                      id={data?.id}
+                    />
+                  </Suspense>
                 ))
               : null}
           </div>
