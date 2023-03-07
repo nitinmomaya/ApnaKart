@@ -1,12 +1,13 @@
 import { lazy, Suspense } from "react";
 import { useUserAuth } from "../context/UserAuth";
-import { isLoading } from "../context/productContext";
+
 const HomeProduct = lazy(() => import("./HomeProduct"));
 import Shimmer from "../components/shimmer/Shimmer";
+import { useProductContext } from "../context/productContext";
 
 const Home = () => {
   const { user } = useUserAuth();
-
+  const { isLoading } = useProductContext();
   return (
     <>
       {isLoading ? (

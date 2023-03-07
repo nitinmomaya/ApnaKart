@@ -12,7 +12,6 @@
   },
   "name": "apnakart",
   "version": "1.0.0",
-  "main": "index.js",
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
     "buffer": "^5.7.1",
@@ -23,7 +22,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build": "parcel build index.js"
   },
   "keywords": [],
   "author": "",
