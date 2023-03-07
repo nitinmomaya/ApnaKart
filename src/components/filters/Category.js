@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useFilterProductContext } from "../../context/filterProductContext";
 import { useProductContext } from "../../context/productContext";
 const Category = () => {
@@ -12,8 +11,7 @@ const Category = () => {
   const filterCategory = category.filter(
     (item, index) => category.indexOf(item) === index
   );
-
-  console.log("CAT", filterCategory);
+  console.log("cattegory rendered");
   return (
     <>
       <div className=" font-display bg-white flex flex-col w-full   space-y-2 border-slate-200 border-[1px] rounded-lg">

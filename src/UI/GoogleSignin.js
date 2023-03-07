@@ -24,9 +24,9 @@ const GoogleSignIn = ({ title }) => {
     <>
       <button
         onClick={signin}
-        className="w-full flex space-x-4 justify-center items-center border-neutral-300 border-solid border-[1px] px-4 py-2 rounded font-display font-semibold text-slate-600"
+        className="w-full flex space-x-4 bg-white hover:bg-slate-50 justify-center items-center border-neutral-300 border-solid border-[1px] px-4 py-2 rounded font-display font-semibold text-slate-600"
       >
-        <img loading="lazy" className="w-8 h-8 mx-2" src={img} />
+        <img rel="preload" as="image" className="w-8 h-8 mx-2" src={img} />
         {title}
       </button>
       <div className="flex w-full justify-evenly items-center ">

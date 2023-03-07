@@ -6,6 +6,7 @@ import { UserAuthContextProvider } from "./src/context/UserAuth";
 import { ProductProvider } from "./src/context/productContext";
 import { FilterProductContextProvider } from "./src/context/filterProductContext";
 import { CartProvider } from "./src/context/cartContext";
+import reportWebVitals from "./webVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,3 +20,4 @@ root.render(
     </ProductProvider>
   </UserAuthContextProvider>
 );
+reportWebVitals(console.log);

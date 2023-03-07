@@ -6,7 +6,13 @@ const ErrorPage = () => {
   return (
     <>
       <div className="flex w-screen h-screen flex-col justify-center items-center space-y-8 font-display ">
-        <img src={img} className="w-80 h-max" alt="" />
+        <img
+          rel="preload"
+          as="image"
+          src={img}
+          className="w-80 h-max"
+          alt="error"
+        />
         <div className="flex justify-center flex-col items-center space-y-2">
           <h1 className="text-3xl text-slate-700 font-semibold">
             No Page Found

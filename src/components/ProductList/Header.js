@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { FiAlignJustify, FiGrid } from "react-icons/fi";
 import { useFilterProductContext } from "../../context/filterProductContext";
-import Search from "../../UI/Search";
+import Shimmer from "../shimmer/Shimmer";
 
+const Search = lazy(() => import("../../UI/Search"));
 const Header = () => {
   const { setGridView, setListView } = useFilterProductContext();
   const [isGrid, setIsGrid] = useState(false);
@@ -22,7 +23,9 @@ const Header = () => {
         {/*SEARCH SECTION */}
         <div className=" lg:w-1/2 w-full flex lg:justify-end justify-between sm:item-center font-display">
           {/* SearchBar Start */}
-          <Search />
+          <Suspense fallback={<Shimmer />}>
+            <Search />
+          </Suspense>
           {/* SearchBar End */}
 
           {/* Change View Section */}

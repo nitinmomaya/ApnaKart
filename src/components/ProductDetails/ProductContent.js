@@ -1,9 +1,9 @@
 import { FiStar, FiCheck } from "react-icons/fi";
 
-import PriceHelper from "../../utils/PriceHelper";
 import { lazy, Suspense, useState } from "react";
+import Shimmer from "../shimmer/Shimmer";
 const ProductQuantity = lazy(() => import("./ProductQuantity"));
-
+const PriceHelper = lazy(() => import("../../utils/PriceHelper"));
 const ProductContent = ({ product }) => {
   const {
     name,
@@ -16,8 +16,6 @@ const ProductContent = ({ product }) => {
 
     colors = [],
   } = product;
-
-  console.log("CONT COLOR", colors, "PROD CONT", product);
 
   const [col, setCol] = useState(colors[0]);
 
@@ -55,10 +53,14 @@ const ProductContent = ({ product }) => {
         </div>
         <div className="flex space-x-4 py-2">
           <p className="font-display font-semibold text-gray-700 text-xl">
-            <PriceHelper price={price} />
+            <Suspense fallback={<Shimmer />}>
+              <PriceHelper price={price} />
+            </Suspense>
           </p>
           <p className="font-display font-semibold text-gray-500 text-xl line-through">
-            <PriceHelper price={price + 200000} />
+            <Suspense fallback={<Shimmer />}>
+              <PriceHelper price={price + 200000} />
+            </Suspense>
           </p>
         </div>
         <p className="font-display  text-base text-gray-700 py-2">

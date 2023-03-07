@@ -60,10 +60,11 @@ const Signup = () => {
       <div className="  w-full  flex md:flex-row flex-col  md:justify-center h-screen space-y-4">
         <div className="md:w-1/2 bg-slate-50 flex flex-col items-center justify-center h-screen py-8">
           <img
-            loading="lazy"
+            rel="preload"
+            as="image"
             className="w-96 h-96 py-4 px-10"
             src={img}
-            alt=""
+            alt="signup"
           />
           <div className=" flex flex-col space-y-2 items-center px-10">
             <h1 className="font-display text-4xl font-bold text-slate-700 text-center">
@@ -81,7 +82,7 @@ const Signup = () => {
                 Signup Page
               </h1>
               <Link to="/login">
-                <button className="border-slate-600 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600">
+                <button className="border-slate-600 bg-white hover:bg-slate-600  hover:text-white border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600">
                   Login
                 </button>
               </Link>

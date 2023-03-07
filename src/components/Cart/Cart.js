@@ -3,6 +3,7 @@ import { FiCheck } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { DELIVERY_CHARGES } from "../../../contant";
 import { useCartContext } from "../../context/cartContext";
+import Shimmer from "../shimmer/Shimmer";
 
 const Button = lazy(() => import("../../UI/Button"));
 const CartList = lazy(() => import("./CartList"));
@@ -26,10 +27,10 @@ const Cart = () => {
     <>
       {cart.length === 0 ? (
         <div className="w-full pt-28 mb-10 flex flex-col space-y-8 justify-center items-center relative z-10">
-          <Suspense>
+          <Suspense fallback={<Shimmer />}>
             <Empty />
             <Link to="/products">
-              <Suspense>
+              <Suspense fallback={<Shimmer />}>
                 <Button name={"Continue Shopping"} />
               </Suspense>
             </Link>
@@ -49,7 +50,7 @@ const Cart = () => {
 
             <CartList cart={cart} />
           </div>
-          <Suspense>
+          <Suspense fallback={<Shimmer />}>
             <CartBill
               totalPrice={totalPrice}
               TAXES={TAXES}
@@ -58,7 +59,7 @@ const Cart = () => {
             />
           </Suspense>
 
-          <Suspense>
+          <Suspense fallback={<Shimmer />}>
             <Modal open={isOpen} close={handleClose}>
               <div className="lg:w-[600px] sm:w-[600px] w-[350px] bg-white flex flex-col justify-center items-center space-y-6 rounded-lg ">
                 <div className="w-10 h-10 rounded-full bg-green-600 flex justify-center items-center mt-8">
@@ -72,7 +73,7 @@ const Cart = () => {
                   <p className="text-slate-700 text-lg text-center px-10">
                     Your order has been placed Successfully you can
                     <span className="text-slate-700  font-semibold px-2">
-                      <Suspense>
+                      <Suspense fallback={<Shimmer />}>
                         <PriceHelper price={GRAND_TOTAL} />
                       </Suspense>
                     </span>

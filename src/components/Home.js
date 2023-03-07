@@ -24,7 +24,7 @@ const Home = () => {
             </p>
           </div>
 
-          <Suspense>
+          <Suspense fallback={<Shimmer />}>
             <HomeProduct title={"Latest Mobile"} data={"mobile"} />
             <HomeProduct title={"Latest Laptop"} data={"laptop"} />
             <HomeProduct title={"Latest Watches"} data={"watch"} />

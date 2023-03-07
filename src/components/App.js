@@ -1,8 +1,6 @@
-import Login from "./Login";
-import ProtectedRoute from "./ProtectedRoute";
-// import Home from "../components/Home";
-// import Navbar from "../components/Navbar";
-// import Footer from "../components/Footer";
+const Login = lazy(() => import("./Login"));
+const ProtectedRoute = lazy(() => import("./ProtectedRoute"));
+
 //Lazy Load components for optimization
 import { lazy, Suspense } from "react";
 const Home = lazy(() => import("./Home"));
@@ -18,20 +16,21 @@ const Signup = lazy(() => import("./Signup"));
 
 //<---Creating Routing Configuration--->
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import Shimmer from "./shimmer/Shimmer";
+
 import ProductShimmer from "./shimmer/ProductShimmer";
+import Shimmer from "./shimmer/Shimmer";
 
 const App = () => {
   return (
     <>
       <div className="w-full h-full flex flex-col min-h-screen">
-        <Suspense>
+        <Suspense fallback={<Shimmer />}>
           <Navbar />
         </Suspense>
 
         <Outlet />
 
-        <Suspense>
+        <Suspense fallback={<Shimmer />}>
           <Footer />
         </Suspense>
       </div>
@@ -43,20 +42,22 @@ export const appRouter = createBrowserRouter([
   {
     path: "/",
     errorElement: (
-      <Suspense>
+      <Suspense fallback={<Shimmer />}>
         <ErrorPage />
       </Suspense>
     ),
     element: (
-      <ProtectedRoute>
-        <App />
-      </ProtectedRoute>
+      <Suspense fallback={<Shimmer />}>
+        <ProtectedRoute>
+          <App />
+        </ProtectedRoute>
+      </Suspense>
     ),
     children: [
       {
         path: "about",
         element: (
-          <Suspense>
+          <Suspense fallback={<Shimmer />}>
             <About />
           </Suspense>
         ),
@@ -64,8 +65,7 @@ export const appRouter = createBrowserRouter([
       {
         path: "/",
         element: (
-          <Suspense>
-            {" "}
+          <Suspense fallback={<Shimmer />}>
             <Home />
           </Suspense>
         ),
@@ -100,7 +100,11 @@ export const appRouter = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <Suspense>
+        <Login />
+      </Suspense>
+    ),
   },
   {
     path: "/signup",

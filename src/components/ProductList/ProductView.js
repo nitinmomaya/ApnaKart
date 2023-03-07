@@ -10,7 +10,7 @@ const ProductView = () => {
       <div className="w-full">
         {listView ? (
           filterProduct.map((filter) => (
-            <Suspense>
+            <Suspense key={filter?.id}>
               <ProductList
                 key={filter?.id}
                 productName={filter?.name}
@@ -24,7 +24,7 @@ const ProductView = () => {
         ) : (
           <div className="flex flex-wrap justify-between">
             {filterProduct.map((filter) => (
-              <Suspense>
+              <Suspense key={filter?.id}>
                 <ProductCard
                   key={filter?.id}
                   productName={filter?.name}

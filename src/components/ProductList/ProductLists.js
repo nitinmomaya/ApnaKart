@@ -17,6 +17,7 @@ const ProductLists = () => {
   //to load page from top
   useEffect(() => {
     window.scrollTo(0, 0);
+    console.log("rendered again");
   }, []);
 
   return (

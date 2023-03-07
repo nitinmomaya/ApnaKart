@@ -30,7 +30,7 @@ const HomeProduct = ({ title, data }) => {
           <div className=" w-full flex-col flex flex-wrap sm:flex-row sm:justify-between  item-center py-4 xl:px-24 px-8  ">
             {data === "mobile"
               ? mobile.map((data) => (
-                  <Suspense>
+                  <Suspense fallback={<Shimmer />} key={data?.id}>
                     <ProductCard
                       key={data?.id}
                       productName={data?.name}
@@ -45,7 +45,7 @@ const HomeProduct = ({ title, data }) => {
 
             {data === "laptop"
               ? laptop.map((data) => (
-                  <Suspense>
+                  <Suspense fallback={<Shimmer />} key={data?.id}>
                     <ProductCard
                       key={data?.id}
                       productName={data?.name}
@@ -60,7 +60,7 @@ const HomeProduct = ({ title, data }) => {
 
             {data === "watch"
               ? watch.map((data) => (
-                  <Suspense>
+                  <Suspense fallback={<Shimmer />} key={data?.id}>
                     <ProductCard
                       key={data?.id}
                       productName={data?.name}

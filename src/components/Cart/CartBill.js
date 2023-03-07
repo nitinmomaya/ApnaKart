@@ -1,7 +1,9 @@
+import { lazy, Suspense } from "react";
 import { DELIVERY_CHARGES, RANDOM_ADDRESS } from "../../../contant";
-import Button from "../../UI/Button";
-import PriceHelper from "../../utils/PriceHelper";
+import Shimmer from "../shimmer/Shimmer";
 
+const Button = lazy(() => import("../../UI/Button"));
+const PriceHelper = lazy(() => import("../../utils/PriceHelper"));
 const CartBill = ({ totalPrice, TAXES, GRAND_TOTAL, setIsOpen }) => {
   const handleOpen = () => {
     setIsOpen(true);
@@ -25,13 +27,17 @@ const CartBill = ({ totalPrice, TAXES, GRAND_TOTAL, setIsOpen }) => {
           <div className="flex w-full justify-between">
             <h1 className="text-slate-700 text-base ">Item Bill</h1>
             <p className="text-slate-700 text-base font-semibold">
-              <PriceHelper price={totalPrice} />
+              <Suspense fallback={<Shimmer />}>
+                <PriceHelper price={totalPrice} />
+              </Suspense>
             </p>
           </div>
           <div className="flex w-full justify-between">
             <h1 className="text-slate-700 text-base ">Delivery Charges</h1>
             <p className="text-slate-700 text-base font-semibold">
-              <PriceHelper price={DELIVERY_CHARGES} />
+              <Suspense fallback={<Shimmer />}>
+                <PriceHelper price={DELIVERY_CHARGES} />
+              </Suspense>
             </p>
           </div>
           <div className="flex w-full justify-between">
@@ -44,18 +50,24 @@ const CartBill = ({ totalPrice, TAXES, GRAND_TOTAL, setIsOpen }) => {
               </h1>
             </div>
             <p className="text-slate-700 text-base font-semibold">
-              <PriceHelper price={TAXES} />
+              <Suspense fallback={<Shimmer />}>
+                <PriceHelper price={TAXES} />
+              </Suspense>
             </p>
           </div>
 
           <div className="flex w-full pt-4 justify-between">
             <h1 className="text-slate-700 text-xl font-bold ">Grand Total</h1>
             <p className="text-slate-700 text-xl font-bold">
-              <PriceHelper price={GRAND_TOTAL} />
+              <Suspense fallback={<Shimmer />}>
+                <PriceHelper price={GRAND_TOTAL} />
+              </Suspense>
             </p>
           </div>
         </div>
-        <Button handle={handleOpen} name={"Order Now"} />
+        <Suspense fallback={<Shimmer />}>
+          <Button handle={handleOpen} name={"Order Now"} />
+        </Suspense>
       </div>
     </>
   );

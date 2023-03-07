@@ -17,7 +17,6 @@ const Colors = () => {
 
   const [col, setCol] = useState(filtercolors[0]);
 
-  console.log("filtercolors", filtercolors);
   return (
     <>
       <div className=" font-display bg-white flex flex-col w-full pt-4 px-2 space-y-2 border-slate-200 border-[1px] rounded-lg">

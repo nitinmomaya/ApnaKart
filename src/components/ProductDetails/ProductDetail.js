@@ -5,6 +5,7 @@ import { API_URL } from "../../../contant";
 import { useProductContext } from "../../context/productContext";
 
 import { useFilterProductContext } from "../../context/filterProductContext";
+import Shimmer from "../shimmer/Shimmer";
 
 const ProductImage = lazy(() => import("./ProductImage"));
 const ProductContent = lazy(() => import("./ProductContent"));
@@ -14,9 +15,6 @@ const ProductDetail = () => {
   const { id } = params;
   const { getProduct, isLoading, product } = useProductContext();
   const { filterProduct } = useFilterProductContext();
-
-  console.log("PRODUCTS DETAIL", product);
-  console.log("FILTER DETAIL", filterProduct);
 
   //to load page from top
   useEffect(() => {
@@ -32,8 +30,6 @@ const ProductDetail = () => {
   } = product;
 
   const [mainImg, setMainImg] = useState(image[0]?.url);
-  console.log("COLOR", colors);
-  console.log("PRODUCTS", product);
 
   //Rating stars
 
@@ -46,14 +42,14 @@ const ProductDetail = () => {
         <ProductShimmer />
       ) : (
         <div className="pt-28 flex  flex-col sm:px-24 px-8 py-20 justify-between md:flex-row">
-          <Suspense>
+          <Suspense fallback={<Shimmer />}>
             <ProductImage
               mainImg={mainImg}
               setMainImg={setMainImg}
               image={image}
             />
           </Suspense>
-          <Suspense>
+          <Suspense fallback={<Shimmer />}>
             <ProductContent product={product} />
           </Suspense>
         </div>

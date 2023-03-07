@@ -1,18 +1,17 @@
 import { useFormik } from "formik";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../assest/Signup-Image.png";
 
 import { useUserAuth } from "../context/UserAuth";
-import GoogleSignIn from "../UI/GoogleSignin";
+const GoogleSignIn = lazy(() => import("../UI/GoogleSignin"));
+const Input = lazy(() => import("../UI/Input"));
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
   email: Yup.string().email().required("Please Enter Your Email"),
   password: Yup.string().min(4).required("Please Enter your Password"),
 });
-
-import Input from "../UI/Input";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -51,10 +50,11 @@ const Login = () => {
       <div className="  w-full  flex md:flex-row flex-col  md:justify-center h-screen space-y-4">
         <div className="md:w-1/2 bg-slate-50 flex flex-col items-center justify-center h-screen py-8">
           <img
-            loading="lazy"
+            rel="preload"
+            as="image"
             className="w-96 h-96 py-4 px-10"
             src={img}
-            alt=""
+            alt="login"
           />
           <div className=" flex flex-col space-y-2 items-center px-10">
             <h1 className="font-display text-4xl font-bold text-slate-700 text-center">
@@ -72,7 +72,7 @@ const Login = () => {
                 Login Page
               </h1>
               <Link to="/signup">
-                <button className="border-slate-600 border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600">
+                <button className="border-slate-600 bg-white hover:bg-slate-600  hover:text-white border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600">
                   Signup
                 </button>
               </Link>
@@ -86,31 +86,35 @@ const Login = () => {
           </div>
 
           <div className="w-full space-y-4">
-            <GoogleSignIn title={"Signin With Google"} />
+            <Suspense>
+              <GoogleSignIn title={"Signin With Google"} />
+            </Suspense>
             <form onSubmit={handleSubmit}>
-              <Input
-                label={"Email"}
-                placeholder={"Enter Email"}
-                type={"email"}
-                name={"email"}
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                errors={errors.email}
-                touched={touched.email}
-              />
-              <Input
-                label={"Password"}
-                placeholder={"Enter Password"}
-                type={"password"}
-                icon={true}
-                name={"password"}
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                errors={errors.password}
-                touched={touched.password}
-              />
+              <Suspense>
+                <Input
+                  label={"Email"}
+                  placeholder={"Enter Email"}
+                  type={"email"}
+                  name={"email"}
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  errors={errors.email}
+                  touched={touched.email}
+                />
+                <Input
+                  label={"Password"}
+                  placeholder={"Enter Password"}
+                  type={"password"}
+                  icon={true}
+                  name={"password"}
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  errors={errors.password}
+                  touched={touched.password}
+                />
+              </Suspense>
               <button
                 type="submit"
                 className="w-full bg-slate-700 text-gray-50 font-display font-semibold px-6 py-3 rounded"

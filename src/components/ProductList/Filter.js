@@ -1,20 +1,24 @@
+import { lazy, Suspense } from "react";
 import { useFilterProductContext } from "../../context/filterProductContext";
-import Button from "../../UI/Button";
-import Category from "../filters/Category";
-import Colors from "../filters/Colors";
-import Company from "../filters/Company";
-import Price from "../filters/Price";
+import Shimmer from "../shimmer/Shimmer";
 
+const Button = lazy(() => import("../../UI/Button"));
+const Category = lazy(() => import("../filters/Category"));
+const Colors = lazy(() => import("../filters/Colors"));
+const Company = lazy(() => import("../filters/Company"));
+const Price = lazy(() => import("../filters/Price"));
 const Filter = () => {
   const { clearFilter } = useFilterProductContext();
   return (
     <>
       <div className=" flex lg:w-1/5 w-full flex-col   space-y-4 ">
-        <Category />
-        <Company />
-        <Colors />
-        <Price />
-        <Button name={"Clear Filter"} handle={clearFilter} />
+        <Suspense fallback={<Shimmer />}>
+          <Category />
+          <Company />
+          <Colors />
+          <Price />
+          <Button name={"Clear Filter"} handle={clearFilter} />
+        </Suspense>
       </div>
     </>
   );

@@ -1,7 +1,9 @@
+import { lazy, Suspense } from "react";
 import { useFilterProductContext } from "../../context/filterProductContext";
-import InputSlider from "../../UI/InputSlider";
-import PriceHelper from "../../utils/PriceHelper";
+import Shimmer from "../shimmer/Shimmer";
 
+const PriceHelper = lazy(() => import("../../utils/PriceHelper"));
+const InputSlider = lazy(() => import("../../UI/InputSlider"));
 const Price = () => {
   const {
     filters: { minPrice, maxPrice, price },
@@ -12,9 +14,13 @@ const Price = () => {
         <h1 className="font-semibold text-xl text-slate-700">Price</h1>
         <div>
           <h1>
-            <PriceHelper price={price} />
+            <Suspense fallback={<Shimmer />}>
+              <PriceHelper price={price} />
+            </Suspense>
           </h1>
-          <InputSlider min={minPrice} max={maxPrice} price={price} />
+          <Suspense fallback={<Shimmer />}>
+            <InputSlider min={minPrice} max={maxPrice} price={price} />
+          </Suspense>
         </div>
       </div>
     </>

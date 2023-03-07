@@ -5,15 +5,13 @@ const CartContext = createContext();
 
 const getCartData = () => {
   let cartData = localStorage.getItem("cartItem");
-  console.log("cartData", cartData);
+
   if (cartData === null) {
     return [];
   } else {
     return JSON.parse(cartData);
   }
 };
-
-console.log("CART LCOAL", getCartData());
 
 const initialState = {
   cart: getCartData(),
