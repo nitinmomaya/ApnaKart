@@ -1,4 +1,4 @@
-import img from "../assest/Office-team.jpg";
+import img from "../assest/Office-Team.jpg";
 import { lazy, Suspense, useEffect } from "react";
 const Section = lazy(() => import("../UI/Section"));
 const About = () => {
