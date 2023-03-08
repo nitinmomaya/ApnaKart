@@ -21,7 +21,7 @@ const validationSchema = Yup.object({
 const Signup = () => {
   const [error, setError] = useState("");
 
-  const { signup } = useUserAuth();
+  const { signup, login } = useUserAuth();
   const navigate = useNavigate();
 
   const initialValues = {
@@ -41,6 +41,16 @@ const Signup = () => {
         action.resetForm();
       },
     });
+
+  const handleDemo = async () => {
+    setError("");
+    try {
+      await login("recruiter@hireme.com", "123456");
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   const handleSignup = async (email, password, name) => {
     setError("");
@@ -81,11 +91,20 @@ const Signup = () => {
               <h1 className="text-3xl font-display font-semibold">
                 Signup Page
               </h1>
-              <Link to="/login">
-                <button className="border-slate-600 bg-white hover:bg-slate-600  hover:text-white border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600">
-                  Login
+              <div className=" w-fit flex space-x-2 ">
+                <Link to="/login">
+                  <button className="border-slate-600  hover:bg-slate-600 bg-white hover:text-white border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600">
+                    Login
+                  </button>
+                </Link>
+
+                <button
+                  onClick={handleDemo}
+                  className="border-slate-600 bg-white hover:bg-slate-600  hover:text-white border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600"
+                >
+                  Demo Login
                 </button>
-              </Link>
+              </div>
             </div>
             <p className="font-display py-2">
               Signup to get assured product delivered on time

@@ -7,6 +7,7 @@ import { useUserAuth } from "../context/UserAuth";
 const GoogleSignIn = lazy(() => import("../UI/GoogleSignin"));
 const Input = lazy(() => import("../UI/Input"));
 import * as Yup from "yup";
+import Button from "../UI/Button";
 
 const validationSchema = Yup.object({
   email: Yup.string().email().required("Please Enter Your Email"),
@@ -23,7 +24,15 @@ const Login = () => {
     email: "",
     password: "",
   };
-
+  const handleDemo = async () => {
+    setError("");
+    try {
+      await login("recruiter@hireme.com", "123456");
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
@@ -54,7 +63,7 @@ const Login = () => {
             as="image"
             className="w-96 h-96 py-4 px-10"
             src={img}
-            alt="login"
+            alt="signup"
           />
           <div className=" flex flex-col space-y-2 items-center px-10">
             <h1 className="font-display text-4xl font-bold text-slate-700 text-center">
@@ -71,14 +80,23 @@ const Login = () => {
               <h1 className="text-3xl font-display font-semibold">
                 Login Page
               </h1>
-              <Link to="/signup">
-                <button className="border-slate-600 bg-white hover:bg-slate-600  hover:text-white border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600">
-                  Signup
+              <div className=" w-fit flex space-x-2 ">
+                <Link to="/signup">
+                  <button className="border-slate-600  hover:bg-slate-600 bg-white hover:text-white border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600">
+                    Signup
+                  </button>
+                </Link>
+
+                <button
+                  onClick={handleDemo}
+                  className="border-slate-600 bg-white hover:bg-slate-600  hover:text-white border-solid border-2 px-4 py-2 rounded font-display font-semibold text-slate-600"
+                >
+                  Demo Login
                 </button>
-              </Link>
+              </div>
             </div>
             <p className="font-display py-2">
-              Login to get assured product delivered on time
+              Signup to get assured product delivered on time
             </p>
             {error && (
               <p className="text-red-500 font-display font-semibold">{error}</p>
@@ -86,41 +104,33 @@ const Login = () => {
           </div>
 
           <div className="w-full space-y-4">
-            <Suspense>
-              <GoogleSignIn title={"Signin With Google"} />
-            </Suspense>
+            <GoogleSignIn title={"Signup With Google"} />
             <form onSubmit={handleSubmit}>
-              <Suspense>
-                <Input
-                  label={"Email"}
-                  placeholder={"Enter Email"}
-                  type={"email"}
-                  name={"email"}
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  errors={errors.email}
-                  touched={touched.email}
-                />
-                <Input
-                  label={"Password"}
-                  placeholder={"Enter Password"}
-                  type={"password"}
-                  icon={true}
-                  name={"password"}
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  errors={errors.password}
-                  touched={touched.password}
-                />
-              </Suspense>
-              <button
-                type="submit"
-                className="w-full bg-slate-700 text-gray-50 font-display font-semibold px-6 py-3 rounded"
-              >
-                Login
-              </button>
+              <Input
+                label={"Email"}
+                placeholder={"Enter Email"}
+                type={"email"}
+                name={"email"}
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors.email}
+                touched={touched.email}
+              />
+              <Input
+                label={"Password"}
+                placeholder={"Enter Password"}
+                type={"password"}
+                icon={true}
+                name={"password"}
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors.password}
+                touched={touched.password}
+              />
+
+              <Button type={"submit"} name={"Sign Up"} />
             </form>
           </div>
         </div>

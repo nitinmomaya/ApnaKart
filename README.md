@@ -1,4 +1,4 @@
-# PrimeCinema
+# ApnaKart
 
 ApnaKart is an online E-Commerce Application containing info all latest and oldest gadets available in the market
 
