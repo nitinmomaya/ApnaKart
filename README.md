@@ -1,6 +1,6 @@
 # ApnaKart
 
-ApnaKart is an online E-Commerce Application containing info all latest and oldest gadets available in the market
+ApnaKart is an online E-Commerce Application containing info all latest and oldest gadgets available in the market
 
 ## Tech Stack
 
